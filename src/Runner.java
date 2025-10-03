@@ -1,18 +1,15 @@
 public class Runner {
 
-    public static void main(String[] args) {
-        int x = 0;
-        int j = 12;
-        if(x < 0)
-            j = -12;
-    }
-
-    static int sum(int[] array) {
-        int sum = 0;
-        for(int i = 0; i < array.length; i++) {
-            sum += array[i];
+    public static void main(String[] args) {;
+        for(int i =1; i<=4; i++) {
+            for(int j =1; j<=10; j++) {
+                Card c = new Card();
+                c.seme = new Seme();
+                c.seme.value = i;
+                c.valore = j;
+                c.printCard();
+            }
         }
-        return sum;
     }
 
 }

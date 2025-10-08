@@ -1,43 +1,39 @@
 public class Card {
-    //1 asso, 2, 3, 4, 5, 6, 7, 8 fante, 9 cavallo, 10 re
-    int valore;
+    static int carte_costruite;
     Seme seme;
+    Value figura;
 
-
-    void printValore() {
-        switch (valore) {
-            case 1:
-                System.out.println("Asso");
-                break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-                System.out.println(valore);
-                break;
-            case 8:
-                System.out.println("Fante");
-                break;
-            case 9:
-                System.out.println("Cavallo");
-                break;
-            case 10:
-                System.out.println("Re");
-                break;
-            default:
-                System.out.println("Errore");
-
-        }
+    Card(Seme seme, Value valore) {
+        this.seme = seme;
+        this.figura = valore;
+        Card.carte_costruite++;
     }
 
-    void printCard() {
+    void print() {
         System.out.println("Carta---------");
-        printValore();
-        printSeme();
+        seme.print();
+        this.figura.print();
         System.out.println("--------------");
     }
 
-
+    //restituisce true se la carta corrente vince sulla carta data
+    // quando la briscola e' quella passata come parametro
+    //assumiamo che la carta corrente sia stata giocata prima di quella data
+    boolean vince(Card d, Seme briscola) {
+        if(this.seme.value== briscola.value) {
+            if(d.seme.value!= briscola.value) {
+                return true;
+            }
+            else {
+                return figura.maggiore(d.figura);
+            }
+        }
+        else if(d.seme.value== briscola.value) {
+            return false;
+        }
+        if(d.seme.value==seme.value)
+            return figura.maggiore(d.figura);
+        else
+            return true;
+    }
 }

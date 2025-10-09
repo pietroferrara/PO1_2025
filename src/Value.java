@@ -1,12 +1,47 @@
 public class Value {
     //1 asso, 2, 3, 4, 5, 6, 7, 8 fante, 9 cavallo, 10 re
-    int value;
+    final int value;
+
+    static final Value asso = new Value(1),
+            due = new Value(2),
+            tre = new Value(3),
+            quattro = new Value(4),
+            cinque = new Value(5),
+            sei = new Value(6),
+            sette = new Value(7),
+            fante = new Value(8),
+            cavallo = new Value(9),
+            re = new Value(10);
 
     Value(int value) {
         if(value>=1 && value<=10)
             this.value = value;
         else this.value = -1;
     }
+
+    static Value getValue(int value) {
+        switch (value) {
+            case 1:
+                return asso;
+            case 2:
+                return due;
+            case 3:
+                return tre;
+            case 4:
+                return quattro;
+            case 5:
+                return cinque;
+            case 6:
+                return sei;
+            case 7: return sette;
+            case 8: return fante;
+            case 9: return cavallo;
+            case 10: return re;
+            default:
+                return null;
+        }
+    }
+
 
     void print() {
         switch (value) {

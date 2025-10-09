@@ -4,19 +4,18 @@ public class Runner {
         Seme s = new Seme(0);
         s.print();
 
-        for(int i =1; i<=4; i++) {
-            for(int j =1; j<=10; j++) {
-                Card c = new Card(new Seme(i), new Value(j));
-                c.print();
-            }
-        }
-        Card c1 = new Card(new Seme(1), new Value(1));
-        Card c2 = new Card(new Seme(2), new Value(2));
-        Seme briscola = new Seme(2);
+        Mazzo m = new Mazzo();
+        m.mischia();
+
+
+        Card c1 = m.get(0);
+        Card c2 = m.get(1);
+        Seme briscola = m.get(2).seme;;
         c1.print();
         c2.print();
+        System.out.println("Briscola: ");
         briscola.print();
-        System.out.println(c1.vince(c2,briscola));
+        System.out.println(Briscola.vince(c1, c2,briscola));
 
         System.out.println("Ho costruito "+c1.carte_costruite+" carte");
     }

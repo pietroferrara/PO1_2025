@@ -1,6 +1,6 @@
 public class Seme {
     //1 spade, 2 denari, 3 bastoni, 4 coppe
-    final int value;
+     int value;
 
     final static Seme spade = new Seme(1),
             denari = new Seme(2),

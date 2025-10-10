@@ -1,6 +1,23 @@
-public class Seme {
-    //1 spade, 2 denari, 3 bastoni, 4 coppe
-     int value;
+enum Seme {
+    Spade, Denari, Bastoni, Coppe;
+
+    void print() {
+        switch (this) {
+            case Spade:
+                System.out.println("Spade");
+                break;
+            case Denari:
+                System.out.println("Denari");
+                break;
+            case Bastoni:
+                System.out.println("Bastoni");
+                break;
+            case Coppe:
+                System.out.println("Coppe");
+        }
+    }
+
+    /*
 
     final static Seme spade = new Seme(1),
             denari = new Seme(2),
@@ -20,12 +37,6 @@ public class Seme {
             default:
                 return null;
         }
-    }
-
-    Seme(int value1) {
-        if(value1 >= 1 && value1 <= 4)
-            this.value = value1;
-        else this.value = -1;
     }
     void print() {
         switch (value) {
@@ -48,5 +59,5 @@ public class Seme {
                 System.exit(-1);
         }
     }
-
+*/
 }

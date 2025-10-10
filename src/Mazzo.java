@@ -6,8 +6,12 @@ public class Mazzo {
     Mazzo() {
         deck = new Card[40];
         for(int i =1; i<=4; i++) {
+            Seme corrente = i==1 ? Seme.Denari:
+                    i==2 ? Seme.Bastoni:
+                    i==3 ? Seme.Coppe :
+                    i==4 ? Seme.Spade : null;
             for(int j =1; j<=10; j++) {
-                Card c = new Card(Seme.getSeme(i), Value.getValue(j));
+                Card c = new Card(corrente, Value.getValue(j));
                 deck[(i-1)*10+j-1] = c;
             }
         }

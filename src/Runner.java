@@ -7,13 +7,12 @@ public class Runner {
 
         Card c1 = m.get(0);
         Card c2 = m.get(1);
-        c1.seme.value = Seme.denari.value;
+        c1.seme = Seme.Denari;
 
         Seme briscola = m.get(2).seme;;
         c1.print();
         c2.print();
-        System.out.println("Briscola: ");
-        briscola.print();
+        System.out.println("Briscola: "+briscola);
         System.out.println(Briscola.vince(c1, c2,briscola));
 
         System.out.println("Ho costruito "+c1.carte_costruite+" carte");

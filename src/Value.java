@@ -1,42 +1,35 @@
-public class Value {
+enum Value {
     //1 asso, 2, 3, 4, 5, 6, 7, 8 fante, 9 cavallo, 10 re
+    Asso(1), Due(2), Tre(3), Quattro(4), Cinque(5), Sei(6), Sette(7), Fante(8), Cavallo(9), Re(10);
+
+
     final int value;
-
-    static final Value asso = new Value(1),
-            due = new Value(2),
-            tre = new Value(3),
-            quattro = new Value(4),
-            cinque = new Value(5),
-            sei = new Value(6),
-            sette = new Value(7),
-            fante = new Value(8),
-            cavallo = new Value(9),
-            re = new Value(10);
-
     Value(int value) {
-        if(value>=1 && value<=10)
-            this.value = value;
-        else this.value = -1;
+        this.value = value;
     }
 
-    static Value getValue(int value) {
-        switch (value) {
+    public static Value getValue(int j) {
+        switch (j) {
             case 1:
-                return asso;
+                return Asso;
             case 2:
-                return due;
+                return Due;
             case 3:
-                return tre;
+                return Tre;
             case 4:
-                return quattro;
+                return Quattro;
             case 5:
-                return cinque;
+                return Cinque;
             case 6:
-                return sei;
-            case 7: return sette;
-            case 8: return fante;
-            case 9: return cavallo;
-            case 10: return re;
+                return Sei;
+            case 7:
+                return Sette;
+            case 8:
+                return Fante;
+            case 9:
+                return Cavallo;
+            case 10:
+                return Re;
             default:
                 return null;
         }
@@ -44,48 +37,21 @@ public class Value {
 
 
     void print() {
-        switch (value) {
-            case 1:
-                System.out.println("Asso");
-                break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-                System.out.println(value);
-                break;
-            case 8:
-                System.out.println("Fante");
-                break;
-            case 9:
-                System.out.println("Cavallo");
-                break;
-            case 10:
-                System.out.println("Re");
-                break;
-            case -1:
-                System.out.println("Errore nel valore passato in fase di costruzione");
-                break;
-            default:
-                System.exit(-1);
-
-        }
+        System.out.println(this.name());
     }
 
     boolean maggiore(Value valore) {
-        if(value==1)
+        if(this==Asso)
             return true;
-        else if(value==3) {
-            if (valore.value == 1)
+        else if(this==Tre) {
+            if (valore == Asso)
                 return false;
             else
                 return true;
         }
-        else if(valore.value==1 || valore.value==3)
+        else if(valore==Asso || valore==Tre)
             return false;
         else
-            return value>=valore.value;
+            return this.value>=valore.value;
     }
 }

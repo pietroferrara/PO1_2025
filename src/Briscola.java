@@ -6,18 +6,18 @@ public class Briscola {
     // quando la briscola e' quella passata come parametro
     //assumiamo che la carta corrente sia stata giocata prima di quella data
     static boolean vince(Card prima, Card seconda, Seme briscola) {
-        if(prima.seme.value== briscola.value) {
-            if(seconda.seme.value!= briscola.value) {
+        if(prima.seme== briscola) {
+            if(seconda.seme!= briscola) {
                 return true;
             }
             else {
                 return prima.figura.maggiore(seconda.figura);
             }
         }
-        else if(seconda.seme.value== briscola.value) {
+        else if(seconda.seme== briscola) {
             return false;
         }
-        if(seconda.seme.value==prima.seme.value)
+        if(seconda.seme==prima.seme)
             return prima.figura.maggiore(seconda.figura);
         else
             return true;

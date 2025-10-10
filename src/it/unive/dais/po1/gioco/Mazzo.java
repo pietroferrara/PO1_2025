@@ -1,9 +1,15 @@
+package it.unive.dais.po1.gioco;
+
+import it.unive.dais.po1.gioco.carte.Seme;
+import it.unive.dais.po1.gioco.carte.Value;
+import it.unive.dais.po1.gioco.carte.Card;
+
 import java.util.Arrays;
 import java.util.Collections;
 
 public class Mazzo {
-    Card[] deck;
-    Mazzo() {
+    private Card[] deck;
+    public Mazzo() {
         deck = new Card[40];
         for(int i =1; i<=4; i++) {
             Seme corrente = i==1 ? Seme.Denari:
@@ -17,7 +23,7 @@ public class Mazzo {
         }
     }
 
-    void mischia() {
+    public void mischia() {
         Collections.shuffle(Arrays.asList(deck));
     }
 

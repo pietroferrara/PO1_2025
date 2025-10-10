@@ -1,10 +1,12 @@
-enum Value {
+package it.unive.dais.po1.gioco.carte;
+
+public enum Value {
     //1 asso, 2, 3, 4, 5, 6, 7, 8 fante, 9 cavallo, 10 re
     Asso(1), Due(2), Tre(3), Quattro(4), Cinque(5), Sei(6), Sette(7), Fante(8), Cavallo(9), Re(10);
 
 
-    final int value;
-    Value(int value) {
+    private final int value;
+    private Value(int value) {
         this.value = value;
     }
 
@@ -36,11 +38,11 @@ enum Value {
     }
 
 
-    void print() {
+    public void print() {
         System.out.println(this.name());
     }
 
-    boolean maggiore(Value valore) {
+    public boolean maggiore(Value valore) {
         if(this==Asso)
             return true;
         else if(this==Tre) {

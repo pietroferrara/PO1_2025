@@ -16,7 +16,9 @@ public class A {
         a1 =a.prv;
         a1 =b.pblc;
         a1 =b.dflt;
+        //a1 = b.prv;
         a1 =b1.pblc;
         //a1 =b1.dflt;
+        //a1 = b1.prv;
     }
 }

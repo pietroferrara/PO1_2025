@@ -9,8 +9,13 @@ import java.util.Collections;
 
 public class Mazzo {
     private Card[] deck;
+    private int first_card_index;
     public Mazzo() {
         deck = new Card[40];
+        first_card_index = 40;
+    }
+
+    public void riempiMazzo() {
         for(int i =1; i<=4; i++) {
             Seme corrente = i==1 ? Seme.Denari:
                     i==2 ? Seme.Bastoni:
@@ -21,13 +26,29 @@ public class Mazzo {
                 deck[(i-1)*10+j-1] = c;
             }
         }
+        first_card_index = 0;
     }
 
     public void mischia() {
         Collections.shuffle(Arrays.asList(deck));
     }
 
+    public int getCarteRimanenti() {
+        return deck.length-first_card_index;
+    }
     public Card get(int i) {
         return deck[i];
+    }
+
+    public Card pop() {
+        Card c = deck[first_card_index];
+        deck[first_card_index] = null;
+        first_card_index++;
+        return c;
+    }
+
+    public void storeCard(Card c1) {
+        first_card_index--;
+        deck[first_card_index] = c1;
     }
 }

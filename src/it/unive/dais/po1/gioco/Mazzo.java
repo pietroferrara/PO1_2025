@@ -9,6 +9,7 @@ import java.util.Collections;
 
 public class Mazzo {
     private Card[] deck;
+    //Prima carta disponibile partendo da sinistra
     private int first_card_index;
     public Mazzo() {
         deck = new Card[40];

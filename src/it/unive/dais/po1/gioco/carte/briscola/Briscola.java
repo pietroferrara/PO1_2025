@@ -1,10 +1,19 @@
 package it.unive.dais.po1.gioco.carte.briscola;
 
 import it.unive.dais.po1.gioco.Mazzo;
-import it.unive.dais.po1.gioco.carte.Seme;
-import it.unive.dais.po1.gioco.carte.Value;
 import it.unive.dais.po1.gioco.carte.Card;
 
+/**
+ * The Briscola class represents the card game of Briscola.
+ * It handles the game logic, turns, card management, and points calculation
+ * for two players.
+ * The game is played with a deck of 40 cards and includes briscola
+ * identification and rules for determining winning hands and rounds.
+ *
+ * @see Giocatore
+ * @author Pietro Ferrara
+ * @since 1.0
+ */
 public class Briscola {
 
     private Card briscola;
@@ -12,6 +21,12 @@ public class Briscola {
     private Mazzo mazzo;
     private int primoDiMano;
 
+    /**
+     * Constructs a Briscola game instance.
+     *
+     * @param g1 the first player in the game
+     * @param g2 the second player in the game
+     */
     public Briscola(Giocatore g1, Giocatore g2) {
         mazzo = new Mazzo();
         mazzo.riempiMazzo();
@@ -79,7 +94,13 @@ public class Briscola {
         }
     }
 
-    //Ritorna il giocatore che ha vinto la partita
+    /**
+     * Plays an entire game of Briscola between two players and determines the winner.
+     * At the end, the player with the higher score is returned as the winner.
+     * If the scores are tied, the method returns null.
+     *
+     * @return the winner of the game as a {@code Giocatore} object, or {@code null} if there is a tie.
+     */
     public Giocatore giocaPartita() {
         while(mazzo.getCarteRimanenti()>1) {
             giocaSingolaMano();

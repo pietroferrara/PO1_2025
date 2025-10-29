@@ -1,4 +1,4 @@
-package it.unive.dais.po1.gioco.carte.briscola;
+package it.unive.dais.po1.gioco.carte.briscola.giocatori;
 
 import it.unive.dais.po1.gioco.Mazzo;
 import it.unive.dais.po1.gioco.carte.Card;
@@ -20,7 +20,9 @@ public class Giocatore {
      * during the game of Briscola. The variable's value is dynamically updated
      * as cards are received or discarded by the player.
      */
-    private Card c1, c2, c3;
+    protected Card c1;
+    protected Card c2;
+    protected Card c3;
     private final String name;
     private Mazzo carte = new Mazzo();
 
@@ -31,6 +33,18 @@ public class Giocatore {
      */
     public Giocatore(String name) {
         this.name = name;
+    }
+
+    /*public Giocatore() {
+        this("Unknown");
+    }*/
+
+    public int getCarte() {
+        int totale = 0;
+        if(c1!=null) totale++;
+        if(c2!=null) totale++;
+        if(c3!=null) totale++;
+        return totale +carte.getCarteRimanenti();
     }
 
     /**
@@ -60,21 +74,8 @@ public class Giocatore {
      * @since 1.0
      */
     public Card scarta() {
-        Card c = null;
-        if(c1 != null){
-            c = c1;
-            this.c1 = null;
-        }
-        else if(c2 != null){
-             c = c2;
-            this.c1 = null;
-        }
-        else if(c3!=null){
-            c = c3;
-            this.c3 = null;
-        }
-        else System.exit(-1);
-        return c;
+        System.exit(-1);
+        return null;
     }
 
     /**

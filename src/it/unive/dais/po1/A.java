@@ -2,7 +2,7 @@ package it.unive.dais.po1;
 
 import it.unive.dais.po1.B.B_other;
 
-public class A {
+public abstract class A {
     public int pblc;
     private int prv;
     int dflt;
@@ -21,4 +21,32 @@ public class A {
         //a1 =b1.dflt;
         //a1 = b1.prv;
     }
+
+    public final int get() {
+        return 1;
+    }
+
+    protected final int get2() {
+        return 1;
+    }
+
+    final int get3() {
+        return 1;
+    }
+
+    private final int get4() {
+        return 1;
+    }
+
+
+    abstract public int get10();
+    abstract protected int get11();
+    abstract int get12();
+    //abstract private int get13();
+
+    //public abstract final int get20();
+
+
+
+
 }

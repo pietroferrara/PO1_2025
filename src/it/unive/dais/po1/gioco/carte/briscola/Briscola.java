@@ -3,6 +3,7 @@ package it.unive.dais.po1.gioco.carte.briscola;
 import it.unive.dais.po1.DesignByContract;
 import it.unive.dais.po1.gioco.Mazzo;
 import it.unive.dais.po1.gioco.carte.Card;
+import it.unive.dais.po1.gioco.carte.briscola.giocatori.Giocatore;
 import it.unive.dais.po1.gioco.carte.briscola.giocatori.GiocatoreNaive;
 
 /**
@@ -20,7 +21,7 @@ public class Briscola {
 
     //invariant mazzo.getCarteRimanenti() + g1.getCarte() + g2.getCarte() + (briscola != null ? 1 : 0) == 40
     private Card briscola;
-    private GiocatoreNaive g1, g2;
+    private Giocatore g1, g2;
     private Mazzo mazzo;
 
     //invariant primoDiMano == 1 || primoDiMano == 2
@@ -32,7 +33,7 @@ public class Briscola {
      * @param g1 the first player in the game
      * @param g2 the second player in the game
      */
-    public Briscola(GiocatoreNaive g1, GiocatoreNaive g2) {
+    public Briscola(Giocatore g1, Giocatore g2) {
         mazzo = new Mazzo();
         mazzo.riempiMazzo();
         mazzo.mischia();
@@ -69,8 +70,8 @@ public class Briscola {
         Card c1 = null, c2 = null;
         switch(primoDiMano) {
             case 1:
-                c1= g1.scarta();
-                c2= g2.scarta();
+                c1= g1.scarta(null, this);
+                c2= g2.scarta(c1, this);
                 if(this.vince(c1, c2)) {
                     g1.storeCard(c1);
                     g1.storeCard(c2);
@@ -83,8 +84,8 @@ public class Briscola {
                 }
                 break;
             case 2:
-                c1= g2.scarta();
-                c2= g1.scarta();
+                c1= g2.scarta(null, this);
+                c2= g1.scarta(c1, this);
                 if(this.vince(c1, c2)) {
                     g2.storeCard(c1);
                     g2.storeCard(c2);
@@ -107,7 +108,7 @@ public class Briscola {
      *
      * @return the winner of the game as a {@code Giocatore} object, or {@code null} if there is a tie.
      */
-    public GiocatoreNaive giocaPartita() {
+    public Giocatore giocaPartita() {
         //preconditions g1!=null, g2!=null, g1!=g2
         DesignByContract.checkPrecondition(g1!=null || g2!=null || g1!=g2);
         while(mazzo.getCarteRimanenti()>1) {
@@ -130,7 +131,7 @@ public class Briscola {
         giocaSingolaMano();
         giocaSingolaMano();
         int g1punti = g1.contaPunti(), g2punti = g2.contaPunti();
-        GiocatoreNaive res;
+        Giocatore res;
         if(g1punti>g2punti) {
             res=g1;
         }

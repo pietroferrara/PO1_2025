@@ -2,6 +2,7 @@ package it.unive.dais.po1.gioco.carte.briscola.giocatori;
 
 import it.unive.dais.po1.gioco.Mazzo;
 import it.unive.dais.po1.gioco.carte.Card;
+import it.unive.dais.po1.gioco.carte.briscola.Briscola;
 
 /**
  * The Giocatore class represents a player in a briscola game.
@@ -36,11 +37,7 @@ public abstract class Giocatore {
         this.name = name;
     }
 
-    /*public Giocatore() {
-        this("Unknown");
-    }*/
-
-    public int getCarte() {
+    final public int getCarte() {
         int totale = 0;
         if(c1!=null) totale++;
         if(c2!=null) totale++;
@@ -55,7 +52,7 @@ public abstract class Giocatore {
      *
      * @param pop the card to be received
      */
-    public void receiveCard(Card pop) {
+    final public void receiveCard(Card pop) {
         if(c1 == null) {
             c1 = pop;
         } else if(c2 == null) {
@@ -74,14 +71,14 @@ public abstract class Giocatore {
      * @return a card in the player's hand.
      * @since 1.0
      */
-    abstract public Card scarta();
+    abstract public Card scarta(Card cartaATerra, Briscola briscola);
 
     /**
      * Stores the specified card in a player's deck.
      *
      * @param c1 the card to be stored in the deck
      */
-    public void storeCard(Card c1) {
+    final public void storeCard(Card c1) {
         this.carte.storeCard(c1);
     }
 
@@ -91,7 +88,7 @@ public abstract class Giocatore {
      *
      * @return the total points
      */
-    public int contaPunti() {
+    final public int contaPunti() {
         int punti = 0;
         while(carte.getCarteRimanenti()>0) {
             punti+=carte.pop().punti();

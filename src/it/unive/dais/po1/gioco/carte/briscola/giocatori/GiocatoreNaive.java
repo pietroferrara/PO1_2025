@@ -1,6 +1,7 @@
 package it.unive.dais.po1.gioco.carte.briscola.giocatori;
 
 import it.unive.dais.po1.gioco.carte.Card;
+import it.unive.dais.po1.gioco.carte.briscola.Briscola;
 
 /**
  * The Giocatore class represents a player in a briscola game.
@@ -18,7 +19,7 @@ public class GiocatoreNaive extends Giocatore {
         //costruisci cio' che mi sta "sopra"
         super(name);//la prima istruzione invoca un costruttore della superclasse
     }
-    public Card scarta() {
+    public Card scarta(Card cartaATerra, Briscola briscola) {
         Card c = null;
         if(c1 != null){
             c = c1;
@@ -36,5 +37,10 @@ public class GiocatoreNaive extends Giocatore {
         return c;
     }
 
+    public Card scarta() { return null;}
+
+    public String getName() {
+        return super.getName()+" is a naive player";
+    }
 
 }

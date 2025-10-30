@@ -1,7 +1,7 @@
 package it.unive.dais.po1.gioco.carte.briscola.giocatori.intelligenti;
 
 import it.unive.dais.po1.gioco.carte.Card;
-import it.unive.dais.po1.gioco.carte.briscola.BriscolaIntelligente;
+import it.unive.dais.po1.gioco.carte.briscola.Briscola;
 import it.unive.dais.po1.gioco.carte.briscola.giocatori.Giocatore;
 
 /**
@@ -23,7 +23,7 @@ public class GiocatoreIntelligente extends Giocatore {
      * Vede la carta e' a terra (se ce ne e' una),
      * e scarta una carta piu' "forte"
      */
-    public Card scarta(Card cartaATerra, BriscolaIntelligente briscola) {
+    public final Card scarta(Card cartaATerra, Briscola briscola) {
         if(cartaATerra==null) {
             Card c = null;
             if (c1 != null) {
@@ -74,4 +74,7 @@ public class GiocatoreIntelligente extends Giocatore {
     }
 
 
+    public String getName() {
+        return super.getName()+" is a smart player";
+    }
 }

@@ -11,13 +11,7 @@ import it.unive.dais.po1.quadrilateri.Trapezio;
 public class Runner {
 
     public static void main(String[] args) {
-        //partitaNaive();
-        Quadrato c = new Quadrato(2);
-        System.out.println(c.getArea());
-        Rettangolo r = new Rettangolo(2, 3);
-        System.out.println(r.getArea());
-        Trapezio t = new Trapezio(2, 3, 4, 5, 1);
-        System.out.println(t.getArea());
+        partitaIntelligente();
     }
 
     private static void partitaIntelligente() {

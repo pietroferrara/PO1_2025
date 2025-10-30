@@ -31,7 +31,7 @@ public class GiocatoreIntelligente extends Giocatore {
                 this.c1 = null;
             } else if (c2 != null) {
                 c = c2;
-                this.c1 = null;
+                this.c2 = null;
             } else if (c3 != null) {
                 c = c3;
                 this.c3 = null;
@@ -55,7 +55,19 @@ public class GiocatoreIntelligente extends Giocatore {
                     c = c3;
                     this.c3 = null;
                 }
-                else System.exit(-1);
+                else {
+                    if(c1!=null) {
+                        c = this.c1;
+                        this.c1=null;
+                        return c;
+                    }
+                    else if(c2!=null) {
+                        c = this.c2;
+                        this.c2=null;
+                        return c;
+                    }
+                    else System.exit(-1);
+                }
             }
             return c;
         }

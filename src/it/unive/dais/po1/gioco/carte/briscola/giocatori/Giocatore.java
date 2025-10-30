@@ -13,13 +13,14 @@ import it.unive.dais.po1.gioco.carte.Card;
  * @author Pietro Ferrara
  * @since 1.0
  */
-public class Giocatore {
+public abstract class Giocatore {
 
     /**
      * Represents three cards a player can hold at a time
      * during the game of Briscola. The variable's value is dynamically updated
      * as cards are received or discarded by the player.
      */
+    //FIXME: utilizza invece una lista di 3 carte
     protected Card c1;
     protected Card c2;
     protected Card c3;
@@ -73,10 +74,7 @@ public class Giocatore {
      * @return a card in the player's hand.
      * @since 1.0
      */
-    public Card scarta() {
-        System.exit(-1);
-        return null;
-    }
+    abstract public Card scarta();
 
     /**
      * Stores the specified card in a player's deck.

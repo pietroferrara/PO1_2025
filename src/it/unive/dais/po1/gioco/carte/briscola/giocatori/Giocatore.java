@@ -2,6 +2,7 @@ package it.unive.dais.po1.gioco.carte.briscola.giocatori;
 
 import it.unive.dais.po1.gioco.Mazzo;
 import it.unive.dais.po1.gioco.carte.Card;
+import it.unive.dais.po1.gioco.carte.CartePrese;
 import it.unive.dais.po1.gioco.carte.briscola.Briscola;
 
 /**
@@ -26,7 +27,7 @@ public abstract class Giocatore {
     protected Card c2;
     protected Card c3;
     private final String name;
-    private Mazzo carte = new Mazzo();
+    private CartePrese carte = new CartePrese();
 
     /**
      * Constructs a Giocatore (player) instance with the specified name.
@@ -41,7 +42,7 @@ public abstract class Giocatore {
         this.c1 = null;
         this.c2 = null;
         this.c3 = null;
-        this.carte = new Mazzo();
+        this.carte = new CartePrese();
     }
 
 

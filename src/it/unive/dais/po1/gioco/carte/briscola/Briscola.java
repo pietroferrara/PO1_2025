@@ -5,6 +5,7 @@ import it.unive.dais.po1.gioco.Mazzo;
 import it.unive.dais.po1.gioco.carte.Card;
 import it.unive.dais.po1.gioco.carte.briscola.giocatori.Giocatore;
 import it.unive.dais.po1.gioco.carte.briscola.giocatori.GiocatoreNaive;
+import it.unive.dais.po1.gioco.carte.briscola.giocatori.intelligenti.GiocatoreIntelligente;
 
 /**
  * The Briscola class represents the card game of Briscola.
@@ -35,10 +36,12 @@ public class Briscola {
      */
     public Briscola(Giocatore g1, Giocatore g2) {
         mazzo = new Mazzo();
-        mazzo.riempiMazzo();
         mazzo.mischia();
         this.g1 = g1;
-        this.g2 = g2;
+        //se g1 e' intelligente, allora fai diventare anche g2 intelligante
+        if(g1 instanceof GiocatoreIntelligente)//richiede un controllo sul tipo **dinamico** dell'espressione g1
+            this.g2 = new GiocatoreIntelligente(g2.getName());
+        else this.g2 = g2;
         //dai 3 carte al giocatore 1
         g1.receiveCard(mazzo.pop());
         g1.receiveCard(mazzo.pop());

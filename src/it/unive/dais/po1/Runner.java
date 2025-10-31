@@ -12,10 +12,11 @@ public class Runner {
     static void printArea(Quadrilatero a) {
         System.out.println("Area: " + a.getArea());
     }
+
     public static void main(String[] args) {
         double vinteg1 = 0, vinteg2 = 0;
 
-        for(int i = 0; i < 100; i++) {
+        for(int i = 0; i < 1000; i++) {
             Card.reset();
             Giocatore g1 = new GiocatoreIntelligente("Pietro"), g2=new GiocatoreNaive("Alessio");
             Briscola b = new Briscola(g1, g2);
@@ -27,7 +28,7 @@ public class Runner {
                 vinteg2 =vinteg2  + 0.5;
             }
             if(g==null) System.out.println("Partita patta");
-            else if (g == g1 || g == g2) // g \in {null, g1, g2}
+            else if (g == g1 || g == g2)
                 System.out.println("Ha vinto " + g.getName());
             else System.err.println("Valore non concesso " + g.getName());
         }

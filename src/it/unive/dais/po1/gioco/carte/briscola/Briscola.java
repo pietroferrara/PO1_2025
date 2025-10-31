@@ -141,11 +141,10 @@ public class Briscola {
         //postcondition return==g1 || return==g2 || return==null
         //gia' un'astrazione ad alto livello
         //DesignByContract.checkPostcondition(res==g1 || res==g2 || res==null);
-        //FIXME
-        //DesignByContract.checkPostcondition(
-        //        g1.contaPunti()>g2.contaPunti() ? res==g1 :
-        //        g1.contaPunti()<g2.contaPunti() ? res==g2 :
-        //        res==null);
+        DesignByContract.checkPostcondition(
+                g1punti>g2punti ? res==g1 :
+                g1punti<g2punti ? res==g2 :
+                res==null);
 
         return res;
     }

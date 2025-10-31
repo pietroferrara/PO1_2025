@@ -37,6 +37,14 @@ public abstract class Giocatore {
         this.name = name;
     }
 
+    public void reset() {
+        this.c1 = null;
+        this.c2 = null;
+        this.c3 = null;
+        this.carte = new Mazzo();
+    }
+
+
     final public int getCarte() {
         int totale = 0;
         if(c1!=null) totale++;

@@ -1,5 +1,7 @@
 package it.unive.dais.po1.gioco.carte;
 
+import it.unive.dais.po1.DesignByContract;
+
 public class Card {
 
     private static int carte_costruite;
@@ -23,6 +25,11 @@ public class Card {
 
     public static int getCarte_costruite() {
         return carte_costruite;
+    }
+
+    public static void reset() {
+        DesignByContract.checkPrecondition(Card.carte_costruite==40 || Card.carte_costruite==0);
+        Card.carte_costruite = 0;
     }
 
     public Seme getSeme() {

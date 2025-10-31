@@ -14,6 +14,6 @@ public class CartePrese extends StackCarte {
     }
 
     public int getCarteRimanenti() {
-        return super.size();
+        return super.size()-super.getEmptySlots();
     }
 }

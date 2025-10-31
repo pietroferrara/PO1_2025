@@ -43,13 +43,13 @@ public class Briscola {
             this.g2 = new GiocatoreIntelligente(g2.getName());
         else this.g2 = g2;
         //dai 3 carte al giocatore 1
-        g1.receiveCard(mazzo.pop());
-        g1.receiveCard(mazzo.pop());
-        g1.receiveCard(mazzo.pop());
+        this.g1.receiveCard(mazzo.pop());
+        this.g1.receiveCard(mazzo.pop());
+        this.g1.receiveCard(mazzo.pop());
         //dai 3 carte al giocatore 2
-        g2.receiveCard(mazzo.pop());
-        g2.receiveCard(mazzo.pop());
-        g2.receiveCard(mazzo.pop());
+        this.g2.receiveCard(mazzo.pop());
+        this.g2.receiveCard(mazzo.pop());
+        this.g2.receiveCard(mazzo.pop());
         briscola = mazzo.pop();
         this.primoDiMano = 1;
     }

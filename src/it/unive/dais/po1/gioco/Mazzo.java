@@ -35,21 +35,14 @@ public class Mazzo extends StackCarte {
     }
 
     public int getCarteRimanenti() {
-        return super.size();
+        return super.size()-super.getEmptySlots();
     }
 
     public int getCarteMancanti() {
-        return 40-super.getEmptySlots();
+        return super.getEmptySlots();
     }
-    /*public Card get(int i) {
-        return deck[i];
-    }*/
 
     public Card pop() {
         return super.pop();
     }
-
-    /*public void storeCard(Card c1) {
-        super.push(c1);
-    }*/
 }

@@ -1,15 +1,13 @@
 package it.unive.dais.po1.gioco;
 
 import it.unive.dais.po1.DesignByContract;
-import it.unive.dais.po1.gioco.carte.Seme;
-import it.unive.dais.po1.gioco.carte.StackCarte;
-import it.unive.dais.po1.gioco.carte.Value;
-import it.unive.dais.po1.gioco.carte.Card;
+import it.unive.dais.po1.gioco.carte.*;
+import it.unive.dais.po1.gioco.carte.briscola.PopCard;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Mazzo extends StackCarte {
+public class Mazzo extends StackCarte implements PopCard {
     public Mazzo() {
         super(40);
         this.riempiMazzo();

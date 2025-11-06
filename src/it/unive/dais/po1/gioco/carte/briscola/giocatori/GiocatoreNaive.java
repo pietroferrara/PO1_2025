@@ -20,27 +20,13 @@ public class GiocatoreNaive extends Giocatore {
         super(name);//la prima istruzione invoca un costruttore della superclasse
     }
     public Card scarta(Card cartaATerra, Briscola briscola) {
-        Card c = null;
-        if(c1 != null){
-            c = c1;
-            this.c1 = null;
-        }
-        else if(c2 != null){
-             c = c2;
-            this.c1 = null;
-        }
-        else if(c3!=null){
-            c = c3;
-            this.c3 = null;
-        }
-        else System.exit(-1);
-        return c;
+        return carteInMano.pop();
     }
 
     public Card scarta() { return null;}
 
     public String getName() {
-        return super.getName()+" is a naive player";
+        return super.getName();
     }
 
 }

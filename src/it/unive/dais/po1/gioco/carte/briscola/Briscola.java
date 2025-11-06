@@ -38,10 +38,15 @@ public class Briscola {
         mazzo = new Mazzo();
         mazzo.mischia();
         this.g1 = g1;
+        this.g2 = g2;
+
         //se g1 e' intelligente, allora fai diventare anche g2 intelligante
-        if(g1 instanceof GiocatoreIntelligente)//richiede un controllo sul tipo **dinamico** dell'espressione g1
-            this.g2 = new GiocatoreIntelligente(g2.getName());
-        else this.g2 = g2;
+        if(this.g1 instanceof GiocatoreIntelligente && !(this.g2 instanceof GiocatoreIntelligente))//richiede un controllo sul tipo **dinamico** dell'espressione g1
+            this.g2 = new GiocatoreIntelligente(this.g2.getName());
+
+        if(this.g2 instanceof GiocatoreIntelligente && !(this.g1 instanceof GiocatoreIntelligente))
+            this.g1 = new GiocatoreIntelligente(this.g1.getName());
+
         //dai 3 carte al giocatore 1
         this.g1.receiveCard(mazzo.pop());
         this.g1.receiveCard(mazzo.pop());

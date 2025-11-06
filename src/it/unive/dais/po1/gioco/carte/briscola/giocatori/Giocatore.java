@@ -1,7 +1,7 @@
 package it.unive.dais.po1.gioco.carte.briscola.giocatori;
 
-import it.unive.dais.po1.gioco.Mazzo;
 import it.unive.dais.po1.gioco.carte.Card;
+import it.unive.dais.po1.gioco.carte.CarteInMano;
 import it.unive.dais.po1.gioco.carte.CartePrese;
 import it.unive.dais.po1.gioco.carte.briscola.Briscola;
 
@@ -23,11 +23,12 @@ public abstract class Giocatore {
      * as cards are received or discarded by the player.
      */
     //FIXME: utilizza invece una lista di 3 carte
-    protected Card c1;
-    protected Card c2;
-    protected Card c3;
+    //protected Card c1;
+    //protected Card c2;
+    //protected Card c3;
+    protected CarteInMano carteInMano = new CarteInMano();
     private final String name;
-    private CartePrese carte = new CartePrese();
+    private CartePrese cartePrese = new CartePrese();
 
     /**
      * Constructs a Giocatore (player) instance with the specified name.
@@ -39,19 +40,17 @@ public abstract class Giocatore {
     }
 
     public void reset() {
-        this.c1 = null;
-        this.c2 = null;
-        this.c3 = null;
-        this.carte = new CartePrese();
+        this.carteInMano = new CarteInMano();
+        this.cartePrese = new CartePrese();
     }
 
 
-    final public int getCarte() {
+    final public int getCartePrese() {
         int totale = 0;
-        if(c1!=null) totale++;
-        if(c2!=null) totale++;
-        if(c3!=null) totale++;
-        return totale +carte.getCarteRimanenti();
+        if(carteInMano.viewCard(1)!=null) totale++;
+        if(carteInMano.viewCard(2)!=null) totale++;
+        if(carteInMano.viewCard(3)!=null) totale++;
+        return totale + cartePrese.getCarteRimanenti();
     }
 
     /**
@@ -62,15 +61,7 @@ public abstract class Giocatore {
      * @param pop the card to be received
      */
     final public void receiveCard(Card pop) {
-        if(c1 == null) {
-            c1 = pop;
-        } else if(c2 == null) {
-            c2 = pop;
-        } else if(c3 == null) {
-            c3 = pop;
-        }
-        else
-            System.exit(-1);
+        carteInMano.storeCard(pop);
     }
 
     /**
@@ -88,7 +79,7 @@ public abstract class Giocatore {
      * @param c1 the card to be stored in the deck
      */
     final public void storeCard(Card c1) {
-        this.carte.storeCard(c1);
+        this.cartePrese.storeCard(c1);
     }
 
     /**
@@ -99,8 +90,8 @@ public abstract class Giocatore {
      */
     final public int contaPunti() {
         int punti = 0;
-        while(carte.getCarteRimanenti()>0) {
-            punti+=carte.pop().punti();
+        while(cartePrese.getCarteRimanenti()>0) {
+            punti+= cartePrese.pop().punti();
         }
         return punti;
     }

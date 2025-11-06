@@ -1,6 +1,8 @@
 package it.unive.dais.po1.gioco.carte;
 
-public class CartePrese extends StackCarte {
+import it.unive.dais.po1.gioco.carte.briscola.PopCard;
+
+public class CartePrese extends StackCarte implements Storable, PopCard {
     public CartePrese() {
         super(40);
     }

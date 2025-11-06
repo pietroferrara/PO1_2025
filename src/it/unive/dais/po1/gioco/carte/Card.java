@@ -18,8 +18,8 @@ public class Card {
     public Card(Seme seme, Value valore) {
         this.seme = seme;
         this.figura = valore;
-        if(carte_costruite>=MAX_CARTE)
-            System.exit(-1);
+        //if(carte_costruite>=MAX_CARTE)
+        //    System.exit(-1);
         Card.carte_costruite++;
     }
 

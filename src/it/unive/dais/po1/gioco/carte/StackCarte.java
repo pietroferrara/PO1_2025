@@ -2,7 +2,7 @@ package it.unive.dais.po1.gioco.carte;
 
 abstract public class StackCarte {
     protected Card[] stack;
-    private int first_empty_slot;
+    protected int first_empty_slot;
     protected StackCarte(int size) {
         this.stack = new Card[size];
         first_empty_slot = 0;
@@ -20,6 +20,9 @@ abstract public class StackCarte {
         return stack.length;
     }
     protected int getEmptySlots() {
-        return stack.length-first_empty_slot;
+        return size()-getFirstEmptySlot();
+    }
+    protected int getFirstEmptySlot() {
+        return first_empty_slot;
     }
 }

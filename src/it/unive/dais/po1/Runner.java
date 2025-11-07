@@ -8,6 +8,8 @@ import it.unive.dais.po1.gioco.carte.briscola.giocatori.intelligenti.GiocatoreIn
 import it.unive.dais.po1.gioco.carte.briscola.giocatori.GiocatoreNaive;
 import it.unive.dais.po1.methoddispatching.BoredPrinter;
 import it.unive.dais.po1.methoddispatching.Printer;
+import it.unive.dais.po1.methoddispatching.Provider;
+import it.unive.dais.po1.methoddispatching.SubProvider;
 import it.unive.dais.po1.quadrilateri.Quadrilatero;
 
 import java.util.Random;
@@ -19,10 +21,29 @@ public class Runner {
         Printer p = null;
         if(new Random().nextBoolean()) {
             p = new Printer();
+            p.staticprinting();
         }
-        else p = new BoredPrinter();
-        p.print();
-        p.print(10);
+        else {
+            p = new BoredPrinter();
+            p.staticprinting();
+        }
+        Printer.staticprinting();
+        BoredPrinter.staticprinting();
+        //p.print();
+        //p.print(10);
+        //p.print("Pippo");
+        /*Provider provider;
+        if(new Random().nextBoolean()) {
+            provider = new Provider();
+        }
+        else provider = new SubProvider();*/
+        //Provider p1 = new Provider();
+        //SubProvider p2 = new SubProvider();
+        //p = new Printer();
+        //p.print(p1, p2);
+        //p.print(p2, p1);
+        //p.print(p2, p2);
+        //p.print(new SubProvider());
     }
 
     private static void playManyMatches() {

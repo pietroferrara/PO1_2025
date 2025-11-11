@@ -17,33 +17,7 @@ import java.util.Random;
 public class Runner {
 
     public static void main(String[] args) {
-
-        Printer p = null;
-        if(new Random().nextBoolean()) {
-            p = new Printer();
-            p.staticprinting();
-        }
-        else {
-            p = new BoredPrinter();
-            p.staticprinting();
-        }
-        Printer.staticprinting();
-        BoredPrinter.staticprinting();
-        //p.print();
-        //p.print(10);
-        //p.print("Pippo");
-        /*Provider provider;
-        if(new Random().nextBoolean()) {
-            provider = new Provider();
-        }
-        else provider = new SubProvider();*/
-        //Provider p1 = new Provider();
-        //SubProvider p2 = new SubProvider();
-        //p = new Printer();
-        //p.print(p1, p2);
-        //p.print(p2, p1);
-        //p.print(p2, p2);
-        //p.print(new SubProvider());
+        playManyMatches();
     }
 
     private static void playManyMatches() {
@@ -68,9 +42,8 @@ public class Runner {
             else if(g.getName().equals("Pietro")) vinteg1++;
             else if(g.getName().equals("Alessio")) vinteg2++;
             if(g==null) System.out.println("Partita patta");
-            else if (g == g1 || g == g2)
-                System.out.println("Ha vinto " + g.getName());
-            else System.err.println("Valore non concesso " + g.getName());
+            else System.out.println("Ha vinto " + g.getName());
+
         }
 
         System.out.println("Vinte g1: " + vinteg1 + ", vinte g2: " + vinteg2);

@@ -7,7 +7,7 @@ import it.unive.dais.po1.gioco.carte.briscola.PopCard;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Mazzo extends StackCarte implements PopCard {
+public class Mazzo extends Stack<Card> implements PopCard {
     public Mazzo() {
         super(40);
         this.riempiMazzo();
@@ -28,12 +28,12 @@ public class Mazzo extends StackCarte implements PopCard {
 
     public void mischia() {
         DesignByContract.checkPrecondition(this.getCarteRimanenti()==40);
-        Collections.shuffle(Arrays.asList(stack));
+        Collections.shuffle(list);
         DesignByContract.checkPrecondition(this.getCarteRimanenti()==40);
     }
 
     public int getCarteRimanenti() {
-        return super.size()-super.getEmptySlots();
+        return super.nonEmptySlots();
     }
 
     public int getCarteMancanti() {

@@ -1,7 +1,7 @@
 package it.unive.dais.po1.gioco.carte.briscola.giocatori.intelligenti;
 
 import it.unive.dais.po1.gioco.carte.Card;
-import it.unive.dais.po1.gioco.carte.CartePrese;
+import it.unive.dais.po1.gioco.carte.CarteCumulo;
 import it.unive.dais.po1.gioco.carte.briscola.BriscolaADue;
 import it.unive.dais.po1.gioco.carte.briscola.BriscolaAQuattro;
 import it.unive.dais.po1.gioco.carte.briscola.giocatori.Giocatore;
@@ -79,7 +79,7 @@ public class GiocatoreIntelligente extends Giocatore {
     }
 
 
-    public Card scarta(CartePrese carteATerra, BriscolaAQuattro briscola) {
+    public Card scarta(CarteCumulo carteATerra, BriscolaAQuattro briscola) {
         return carteInMano.pop();
     }
 

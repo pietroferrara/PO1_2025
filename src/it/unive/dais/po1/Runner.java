@@ -1,6 +1,7 @@
 package it.unive.dais.po1;
 
 import it.unive.dais.po1.gioco.carte.*;
+import it.unive.dais.po1.gioco.carte.briscola.Briscola;
 import it.unive.dais.po1.gioco.carte.briscola.BriscolaADue;
 import it.unive.dais.po1.gioco.carte.briscola.BriscolaAQuattro;
 import it.unive.dais.po1.gioco.carte.briscola.giocatori.Giocatore;
@@ -12,7 +13,64 @@ import java.util.Random;
 public class Runner {
 
     public static void main(String[] args) {
-        playManyMatches4Players();
+        Briscola[] briscole = new Briscola[10];
+        Giocatore g1 = new GiocatoreNaive("a"), g2 =  new GiocatoreNaive("a"), g3 =  new GiocatoreNaive("a"), g4 =  new GiocatoreNaive("a");
+        BriscolaADue bDue = new BriscolaADue(g1, g2);
+        BriscolaAQuattro bQuattro = new BriscolaAQuattro(g1, g2, g3, g4);
+        briscole[0] = bDue;
+        briscole[1] = bQuattro;
+
+        BriscolaADue[] bDueArray = new BriscolaADue[10];
+        bDueArray[0] = new BriscolaADue( new GiocatoreNaive("a"),  new GiocatoreNaive("a"));
+        bDueArray[1] = new BriscolaADue( new GiocatoreNaive("a"),  new GiocatoreNaive("a"));
+        briscole = bDueArray;
+        Briscola b = briscole[0];
+        briscole[0] = new BriscolaAQuattro( new GiocatoreNaive("a"),  new GiocatoreNaive("a"),  new GiocatoreNaive("a"),  new GiocatoreNaive("a"));
+        BriscolaADue b2 = bDueArray[0];
+
+
+
+        /*
+        Briscola b = briscole[0];
+
+        Stack<Briscola> stack = new Stack<>();
+        stack.push(bDue);
+        stack.push(bQuattro);
+        b = stack.pop();
+
+        Stack<BriscolaADue> stackDue = new Stack<>();
+        stackDue.push(bDue);
+        //stackDue.push(bQuattro);
+        bDue = stackDue.pop();
+
+        stack = stackDue;
+        stack.pop(); //il tipo di ritorno e' BriscolaADue, sottotipo di Briscola, OK (covarianza)
+        stack.push(bDue);
+        stack.push(bQuattro);//sto mettendo una BriscolaAQuattro in un stack di BriscolaADue, NO (contravarianza)
+
+
+        stackDue = stack;
+        stackDue.push(bDue);
+        stackDue.push(bQuattro);//NO
+        stack.push(bQuattro);
+        stackDue.pop();//Potrei avere una BriscolaAQuattro e non a due!
+
+
+         */
+
+
+        /*Stack<String> stack = new Stack<String>();
+        stack.push("uno");
+        stack.push("due");
+        String a = "tre";
+        stack.push(a);
+
+        for(int i = 0; i<3; i++) {
+            a = stack.pop();
+            System.out.println(a);
+        }*/
+
+        //playManyMatches4Players();
     }
 
     private static void playManyMatches2Players() {

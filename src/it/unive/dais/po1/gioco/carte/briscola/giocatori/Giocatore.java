@@ -2,7 +2,7 @@ package it.unive.dais.po1.gioco.carte.briscola.giocatori;
 
 import it.unive.dais.po1.gioco.carte.Card;
 import it.unive.dais.po1.gioco.carte.CarteInMano;
-import it.unive.dais.po1.gioco.carte.CartePrese;
+import it.unive.dais.po1.gioco.carte.CarteCumulo;
 import it.unive.dais.po1.gioco.carte.briscola.BriscolaADue;
 import it.unive.dais.po1.gioco.carte.briscola.BriscolaAQuattro;
 
@@ -29,7 +29,7 @@ public abstract class Giocatore {
     //protected Card c3;
     protected CarteInMano carteInMano = new CarteInMano();
     private final String name;
-    private CartePrese cartePrese = new CartePrese();
+    private CarteCumulo cartePrese = new CarteCumulo();
 
     /**
      * Constructs a Giocatore (player) instance with the specified name.
@@ -42,7 +42,7 @@ public abstract class Giocatore {
 
     public void reset() {
         this.carteInMano = new CarteInMano();
-        this.cartePrese = new CartePrese();
+        this.cartePrese = new CarteCumulo();
     }
 
 
@@ -75,7 +75,7 @@ public abstract class Giocatore {
     abstract public Card scarta(Card cartaATerra, BriscolaADue briscola);
 
 
-    abstract public Card scarta(CartePrese carteATerra, BriscolaAQuattro briscola);
+    abstract public Card scarta(CarteCumulo carteATerra, BriscolaAQuattro briscola);
 
     /**
      * Stores the specified card in a player's deck.

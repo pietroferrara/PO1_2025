@@ -1,7 +1,7 @@
 package it.unive.dais.po1.gioco.carte.briscola;
 
 import it.unive.dais.po1.gioco.carte.Card;
-import it.unive.dais.po1.gioco.carte.CartePrese;
+import it.unive.dais.po1.gioco.carte.CarteCumulo;
 import it.unive.dais.po1.gioco.carte.briscola.giocatori.Giocatore;
 
 public class BriscolaAQuattro extends Briscola {
@@ -67,7 +67,7 @@ public class BriscolaAQuattro extends Briscola {
         Giocatore terzoDiMano = tavolo.get(2);
         Giocatore quartoDiMano = tavolo.get(3);
 
-        CartePrese c = new CartePrese();
+        CarteCumulo c = new CarteCumulo();
         Card prima = primoDiMano.scarta(c, this);
         c.storeCard(prima);
         Card seconda = secondoDiMano.scarta(c, this);
@@ -99,7 +99,7 @@ public class BriscolaAQuattro extends Briscola {
         }
     }
 
-    private void giveAllCards(Giocatore giocatore, CartePrese c) {
+    private void giveAllCards(Giocatore giocatore, CarteCumulo c) {
         while(c.getCarteRimanenti()>0) {
             giocatore.storeCard(c.pop());
         }

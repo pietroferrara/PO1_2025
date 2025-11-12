@@ -41,6 +41,8 @@ public class Mazzo extends Stack<Card> implements PopCard {
     }
 
     public Card pop() {
-        return super.pop();
+        if(super.list.size()==0)
+            return null;
+        else return super.pop();
     }
 }

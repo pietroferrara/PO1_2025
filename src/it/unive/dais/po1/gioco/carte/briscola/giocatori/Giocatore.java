@@ -3,7 +3,8 @@ package it.unive.dais.po1.gioco.carte.briscola.giocatori;
 import it.unive.dais.po1.gioco.carte.Card;
 import it.unive.dais.po1.gioco.carte.CarteInMano;
 import it.unive.dais.po1.gioco.carte.CartePrese;
-import it.unive.dais.po1.gioco.carte.briscola.Briscola;
+import it.unive.dais.po1.gioco.carte.briscola.BriscolaADue;
+import it.unive.dais.po1.gioco.carte.briscola.BriscolaAQuattro;
 
 /**
  * The Giocatore class represents a player in a briscola game.
@@ -71,7 +72,10 @@ public abstract class Giocatore {
      * @return a card in the player's hand.
      * @since 1.0
      */
-    abstract public Card scarta(Card cartaATerra, Briscola briscola);
+    abstract public Card scarta(Card cartaATerra, BriscolaADue briscola);
+
+
+    abstract public Card scarta(CartePrese carteATerra, BriscolaAQuattro briscola);
 
     /**
      * Stores the specified card in a player's deck.

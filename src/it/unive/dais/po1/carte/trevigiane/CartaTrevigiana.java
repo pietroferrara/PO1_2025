@@ -1,13 +1,13 @@
-package it.unive.dais.po1.gioco.carte;
+package it.unive.dais.po1.carte.trevigiane;
 
 import it.unive.dais.po1.DesignByContract;
+import it.unive.dais.po1.carte.Carta;
 
-public class Card {
+
+public class CartaTrevigiana extends Carta<SemeTrevigiano, ValueTrevigiano> {
 
     private static int carte_costruite;
     public static final int MAX_CARTE;
-    private final Seme seme;
-    private final Value figura;
 
 
     static {
@@ -15,12 +15,9 @@ public class Card {
         carte_costruite = 0;
     }
 
-    public Card(Seme seme, Value valore) {
-        this.seme = seme;
-        this.figura = valore;
-        //if(carte_costruite>=MAX_CARTE)
-        //    System.exit(-1);
-        Card.carte_costruite++;
+    public CartaTrevigiana(SemeTrevigiano seme, ValueTrevigiano valore) {
+        super(seme, valore);
+        CartaTrevigiana.carte_costruite++;
     }
 
     public static int getCarte_costruite() {
@@ -28,27 +25,20 @@ public class Card {
     }
 
     public static void reset() {
-        DesignByContract.checkPrecondition(Card.carte_costruite==40 || Card.carte_costruite==0);
-        Card.carte_costruite = 0;
+        DesignByContract.checkPrecondition(CartaTrevigiana.carte_costruite==40 || CartaTrevigiana.carte_costruite==0);
+        CartaTrevigiana.carte_costruite = 0;
     }
 
-    public Seme getSeme() {
-        return seme;
-    }
-
-    public Value getFigura() {
-        return figura;
-    }
-
+    //FIXME: Spostare in Briscola
     public void print() {
-        System.out.println("Carta---------");
+        System.out.println("Carta Trevigiana---------");
         seme.print();
-        this.figura.print();
+        this.valore.print();
         System.out.println("--------------");
     }
 
     public int punti() {
-        switch(this.figura) {
+        switch(this.valore) {
             case Asso:
                 return 11;
             case Tre:
@@ -63,4 +53,5 @@ public class Card {
                 return 0;
         }
     }
+
 }

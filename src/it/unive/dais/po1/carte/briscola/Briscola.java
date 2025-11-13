@@ -1,58 +1,56 @@
-package it.unive.dais.po1.gioco.carte.briscola;
+package it.unive.dais.po1.carte.briscola;
 
-import it.unive.dais.po1.gioco.Mazzo;
-import it.unive.dais.po1.gioco.carte.Card;
-import it.unive.dais.po1.gioco.carte.briscola.giocatori.Giocatore;
+import it.unive.dais.po1.carte.gioco.GiocoDiCarte;
+import it.unive.dais.po1.carte.trevigiane.MazzoTrevigiano;
+import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
 
-abstract public class Briscola {
+abstract public class Briscola extends GiocoDiCarte<MazzoTrevigiano> {
 
-    protected Card briscola;
+    protected CartaTrevigiana briscola;
 
-    protected Mazzo mazzo;
+    protected MazzoTrevigiano mazzo;
 
     public Briscola() {
-        mazzo = new Mazzo();
-        mazzo.mischia();
+        super(new MazzoTrevigiano());
     }
 
 
-    abstract public Giocatore giocaPartita();
 
     //restituisce true se la carta corrente vince sulla carta data
     // quando la briscola e' quella passata come parametro
     //assumiamo che la carta corrente sia stata giocata prima di quella data
-    public boolean maggiore(Card prima, Card seconda) {
+    public boolean maggiore(CartaTrevigiana prima, CartaTrevigiana seconda) {
         if(prima.getSeme()== briscola.getSeme()) {
             if(seconda.getSeme()!= briscola.getSeme()) {
                 return true;
             }
             else {
-                return prima.getFigura().maggiore(seconda.getFigura());
+                return prima.getValore().maggiore(seconda.getValore());
             }
         }
         else if(seconda.getSeme()== briscola.getSeme()) {
             return false;
         }
         if(seconda.getSeme()==prima.getSeme())
-            return prima.getFigura().maggiore(seconda.getFigura());
+            return prima.getValore().maggiore(seconda.getValore());
         else
             return true;
     }
 
-    public boolean vince(Card prima, Card seconda) {
+    public boolean vince(CartaTrevigiana prima, CartaTrevigiana seconda) {
         if(prima.getSeme()== briscola.getSeme()) {
             if(seconda.getSeme()!= briscola.getSeme()) {
                 return true;
             }
             else {
-                return prima.getFigura().maggiore(seconda.getFigura());
+                return prima.getValore().maggiore(seconda.getValore());
             }
         }
         else if(seconda.getSeme()== briscola.getSeme()) {
             return false;
         }
         if(seconda.getSeme()==prima.getSeme())
-            return prima.getFigura().maggiore(seconda.getFigura());
+            return prima.getValore().maggiore(seconda.getValore());
         else
             return false;
     }

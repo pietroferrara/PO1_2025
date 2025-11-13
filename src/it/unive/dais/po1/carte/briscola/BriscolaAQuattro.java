@@ -1,13 +1,13 @@
-package it.unive.dais.po1.gioco.carte.briscola;
+package it.unive.dais.po1.carte.briscola;
 
-import it.unive.dais.po1.gioco.carte.Card;
-import it.unive.dais.po1.gioco.carte.CarteCumulo;
-import it.unive.dais.po1.gioco.carte.briscola.giocatori.Giocatore;
+import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreBirscolaIntelligente;
+import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
+import it.unive.dais.po1.carte.CarteCumulo;
 
 public class BriscolaAQuattro extends Briscola {
-    private Giocatore g1, g2, g3, g4;
+    private GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g1, g2, g3, g4;
 
-    public BriscolaAQuattro(Giocatore g1, Giocatore g2, Giocatore g3, Giocatore g4) {
+    public BriscolaAQuattro(GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g1, GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g2, GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g3, GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g4) {
         super();
         this.g1 = g1;
         this.g2 = g2;
@@ -15,7 +15,7 @@ public class BriscolaAQuattro extends Briscola {
         this.g4 = g4;
     }
 
-    public Giocatore giocaPartita() {
+    public GiocatoreBirscolaIntelligente.GiocatoreDiBriscola giocaPartita() {
         TavoloQuattroGiocatori tavolo = new TavoloQuattroGiocatori(g1, g2, g3, g4);
         this.g1.receiveCard(mazzo.pop());
         this.g1.receiveCard(mazzo.pop());
@@ -33,11 +33,11 @@ public class BriscolaAQuattro extends Briscola {
         briscola = mazzo.pop();
         boolean mazzoIsEmpty = false;
         while (!mazzoIsEmpty) {
-            Giocatore vincitore = giocaMano(tavolo);
+            GiocatoreBirscolaIntelligente.GiocatoreDiBriscola vincitore = giocaMano(tavolo);
             tavolo.get(0).receiveCard(mazzo.pop());
             tavolo.get(1).receiveCard(mazzo.pop());
             tavolo.get(2).receiveCard(mazzo.pop());
-            Card next = mazzo.pop();
+            CartaTrevigiana next = mazzo.pop();
             if (next != null)
                 tavolo.get(3).receiveCard(next);
             else {
@@ -61,20 +61,20 @@ public class BriscolaAQuattro extends Briscola {
         }
     }
 
-    private Giocatore giocaMano(TavoloQuattroGiocatori tavolo) {
-        Giocatore primoDiMano = tavolo.get(0);
-        Giocatore secondoDiMano = tavolo.get(1);
-        Giocatore terzoDiMano = tavolo.get(2);
-        Giocatore quartoDiMano = tavolo.get(3);
+    private GiocatoreBirscolaIntelligente.GiocatoreDiBriscola giocaMano(TavoloQuattroGiocatori tavolo) {
+        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola primoDiMano = tavolo.get(0);
+        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola secondoDiMano = tavolo.get(1);
+        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola terzoDiMano = tavolo.get(2);
+        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola quartoDiMano = tavolo.get(3);
 
         CarteCumulo c = new CarteCumulo();
-        Card prima = primoDiMano.scarta(c, this);
+        CartaTrevigiana prima = primoDiMano.scarta(c, this);
         c.storeCard(prima);
-        Card seconda = secondoDiMano.scarta(c, this);
+        CartaTrevigiana seconda = secondoDiMano.scarta(c, this);
         c.storeCard(seconda);
-        Card terza = terzoDiMano.scarta(c, this);
+        CartaTrevigiana terza = terzoDiMano.scarta(c, this);
         c.storeCard(terza);
-        Card quarta = quartoDiMano.scarta(c, this);
+        CartaTrevigiana quarta = quartoDiMano.scarta(c, this);
         c.storeCard(quarta);
         if (maggiore(prima, seconda) && maggiore(prima, quarta)) {
             giveAllCards(primoDiMano, c);
@@ -99,7 +99,7 @@ public class BriscolaAQuattro extends Briscola {
         }
     }
 
-    private void giveAllCards(Giocatore giocatore, CarteCumulo c) {
+    private void giveAllCards(GiocatoreBirscolaIntelligente.GiocatoreDiBriscola giocatore, CarteCumulo c) {
         while(c.getCarteRimanenti()>0) {
             giocatore.storeCard(c.pop());
         }

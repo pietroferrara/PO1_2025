@@ -1,4 +1,4 @@
-package it.unive.dais.po1.gioco.carte;
+package it.unive.dais.po1.carte;
 
 import java.util.ArrayList;
 import java.util.List;

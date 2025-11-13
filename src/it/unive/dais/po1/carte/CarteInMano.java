@@ -1,14 +1,15 @@
-package it.unive.dais.po1.gioco.carte;
+package it.unive.dais.po1.carte;
 
-import it.unive.dais.po1.gioco.carte.briscola.PopCard;
+import it.unive.dais.po1.carte.briscola.PopCard;
+import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
 
-public class CarteInMano extends Stack<Card> implements Storable, PopCard {
+public class CarteInMano extends Stack<CartaTrevigiana> implements Storable, PopCard {
 
     public CarteInMano() {
         super(3);
     }
 
-    public void storeCard(Card c1) {
+    public void storeCard(CartaTrevigiana c1) {
         if(this.getEmptySlots() > 0) {
             super.push(c1);
         }
@@ -18,7 +19,7 @@ public class CarteInMano extends Stack<Card> implements Storable, PopCard {
         }
     }
 
-    public Card viewCard(int i) {
+    public CartaTrevigiana viewCard(int i) {
         switch (i) {
             case 1:
             case 2:
@@ -32,11 +33,11 @@ public class CarteInMano extends Stack<Card> implements Storable, PopCard {
     }
 
     //Ritorna una carta casuale
-    public Card pop() {
+    public CartaTrevigiana pop() {
         return super.pop();
     }
 
-    public void remove(Card c) {
+    public void remove(CartaTrevigiana c) {
         int i = find(c);
         list.set(i, null);
         for(int j = i; j< list.size()-1; j++) {
@@ -45,7 +46,7 @@ public class CarteInMano extends Stack<Card> implements Storable, PopCard {
         list.set(list.size()-1, null);
     }
 
-    private int find(Card c) {
+    private int find(CartaTrevigiana c) {
         for(int i = 0; i< list.size(); i++) {
             if(list.get(i)==c) {
                 return i;

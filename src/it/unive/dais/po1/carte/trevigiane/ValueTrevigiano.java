@@ -1,16 +1,18 @@
-package it.unive.dais.po1.gioco.carte;
+package it.unive.dais.po1.carte.trevigiane;
 
-public enum Value {
+import it.unive.dais.po1.carte.Value;
+
+public enum ValueTrevigiano implements Value {
     //1 asso, 2, 3, 4, 5, 6, 7, 8 fante, 9 cavallo, 10 re
     Asso(1), Due(2), Tre(3), Quattro(4), Cinque(5), Sei(6), Sette(7), Fante(8), Cavallo(9), Re(10);
 
 
     private final int value;
-    private Value(int value) {
+    private ValueTrevigiano(int value) {
         this.value = value;
     }
 
-    public static Value getValue(int j) {
+    public static ValueTrevigiano getValue(int j) {
         switch (j) {
             case 1:
                 return Asso;
@@ -42,7 +44,8 @@ public enum Value {
         System.out.println(this.name());
     }
 
-    public boolean maggiore(Value valore) {
+    //FIXME: questo dovrebbe essere in Briscola (encapsulation)
+    public boolean maggiore(ValueTrevigiano valore) {
         if(this==Asso)
             return true;
         else if(this==Tre) {

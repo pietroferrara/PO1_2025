@@ -1,93 +1,51 @@
 package it.unive.dais.po1;
 
-import it.unive.dais.po1.gioco.carte.*;
-import it.unive.dais.po1.gioco.carte.briscola.Briscola;
-import it.unive.dais.po1.gioco.carte.briscola.BriscolaADue;
-import it.unive.dais.po1.gioco.carte.briscola.BriscolaAQuattro;
-import it.unive.dais.po1.gioco.carte.briscola.giocatori.Giocatore;
-import it.unive.dais.po1.gioco.carte.briscola.giocatori.intelligenti.GiocatoreIntelligente;
-import it.unive.dais.po1.gioco.carte.briscola.giocatori.GiocatoreNaive;
+import it.unive.dais.po1.carte.*;
+import it.unive.dais.po1.carte.briscola.BriscolaADue;
+import it.unive.dais.po1.carte.briscola.BriscolaAQuattro;
+import it.unive.dais.po1.carte.francese.CartaFrancese;
+import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreBirscolaIntelligente;
+import it.unive.dais.po1.carte.francese.MazzoFrancese;
+import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
+import it.unive.dais.po1.carte.trevigiane.MazzoTrevigiano;
+import it.unive.dais.po1.carte.trevigiane.SemeTrevigiano;
+import it.unive.dais.po1.carte.trevigiane.ValueTrevigiano;
 
 import java.util.Random;
 
 public class Runner {
 
     public static void main(String[] args) {
-        Briscola[] briscole = new Briscola[10];
-        Giocatore g1 = new GiocatoreNaive("a"), g2 =  new GiocatoreNaive("a"), g3 =  new GiocatoreNaive("a"), g4 =  new GiocatoreNaive("a");
-        BriscolaADue bDue = new BriscolaADue(g1, g2);
-        BriscolaAQuattro bQuattro = new BriscolaAQuattro(g1, g2, g3, g4);
-        briscole[0] = bDue;
-        briscole[1] = bQuattro;
+        //Mazzo<Carta> mazzo = new Mazzo<CartaTrevigiana>(); NON C'E' COVARIANZA SUI TIPI GENERICI
+        Stack<? extends Carta> st = new Stack<CartaTrevigiana>();
+        //st.push(new CartaTrevigiana(SemeTrevigiano.Bastoni, ValueTrevigiano.Re));
+        Stack<? extends CartaTrevigiana> st2 = new Stack<CartaTrevigiana>();
+        //st2.push("pippo");
+        st = st2;
+        //st2 = st;
 
-        BriscolaADue[] bDueArray = new BriscolaADue[10];
-        bDueArray[0] = new BriscolaADue( new GiocatoreNaive("a"),  new GiocatoreNaive("a"));
-        bDueArray[1] = new BriscolaADue( new GiocatoreNaive("a"),  new GiocatoreNaive("a"));
-        briscole = bDueArray;
-        Briscola b = briscole[0];
-        briscole[0] = new BriscolaAQuattro( new GiocatoreNaive("a"),  new GiocatoreNaive("a"),  new GiocatoreNaive("a"),  new GiocatoreNaive("a"));
-        BriscolaADue b2 = bDueArray[0];
-
-
-
-        /*
-        Briscola b = briscole[0];
-
-        Stack<Briscola> stack = new Stack<>();
-        stack.push(bDue);
-        stack.push(bQuattro);
-        b = stack.pop();
-
-        Stack<BriscolaADue> stackDue = new Stack<>();
-        stackDue.push(bDue);
-        //stackDue.push(bQuattro);
-        bDue = stackDue.pop();
-
-        stack = stackDue;
-        stack.pop(); //il tipo di ritorno e' BriscolaADue, sottotipo di Briscola, OK (covarianza)
-        stack.push(bDue);
-        stack.push(bQuattro);//sto mettendo una BriscolaAQuattro in un stack di BriscolaADue, NO (contravarianza)
-
-
-        stackDue = stack;
-        stackDue.push(bDue);
-        stackDue.push(bQuattro);//NO
-        stack.push(bQuattro);
-        stackDue.pop();//Potrei avere una BriscolaAQuattro e non a due!
-
-
-         */
-
-
-        /*Stack<String> stack = new Stack<String>();
-        stack.push("uno");
-        stack.push("due");
-        String a = "tre";
-        stack.push(a);
-
-        for(int i = 0; i<3; i++) {
-            a = stack.pop();
-            System.out.println(a);
-        }*/
-
-        //playManyMatches4Players();
+        //Carta c = st.pop();
+        //Stack<CartaTrevigiana> st2 = st;
+        //mazzo = new MazzoTrevigiano();//Mazzo<CartaTrevigiana>
+        //Carta[] array = new CartaTrevigiana[10];
+        playManyMatches2Players();
     }
 
     private static void playManyMatches2Players() {
         double vinteg1 = 0, vinteg2 = 0;
-        Giocatore g1, g2;
+        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g1, g2;
         if(new Random().nextBoolean())
-            g1 = new GiocatoreIntelligente("Pietro");
-        else g1 = new GiocatoreNaive("Pietro");
+            g1 = new GiocatoreBirscolaIntelligente("Pietro");
+        else g1 = new GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive("Pietro");
         if(new Random().nextBoolean())
-            g2=new GiocatoreIntelligente("Alessio");
-        else g2=new GiocatoreNaive("Alessio");
+            g2=new GiocatoreBirscolaIntelligente("Alessio");
+        else g2=new GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive("Alessio");
 
         for(int i = 0; i < 1000; i++) {
-            Card.reset();
+            CartaTrevigiana.reset();
 
             BriscolaADue b = new BriscolaADue(g1, g2);
-            Giocatore g = b.giocaPartita();
+            GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g = b.giocaPartita();
             if(g==null) {
                 vinteg1 = vinteg1 + 0.5;
                 vinteg2 =vinteg2  + 0.5;
@@ -104,25 +62,25 @@ public class Runner {
 
     private static void playManyMatches4Players() {
         double vintesquadra1 = 0, vintesquadra2 = 0;
-        Giocatore g1, g2, g3, g4;
+        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g1, g2, g3, g4;
         if(new Random().nextBoolean())
-            g1 = new GiocatoreIntelligente("Pietro");
-        else g1 = new GiocatoreNaive("Pietro");
+            g1 = new GiocatoreBirscolaIntelligente("Pietro");
+        else g1 = new GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive("Pietro");
         if(new Random().nextBoolean())
-            g2=new GiocatoreIntelligente("Alessio");
-        else g2=new GiocatoreNaive("Alessio");
+            g2=new GiocatoreBirscolaIntelligente("Alessio");
+        else g2=new GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive("Alessio");
         if(new Random().nextBoolean())
-            g3 = new GiocatoreIntelligente("Gianluca");
-        else g3 = new GiocatoreNaive("Gianluca");
+            g3 = new GiocatoreBirscolaIntelligente("Gianluca");
+        else g3 = new GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive("Gianluca");
         if(new Random().nextBoolean())
-            g4=new GiocatoreIntelligente("Mario");
-        else g4=new GiocatoreNaive("Mario");
+            g4=new GiocatoreBirscolaIntelligente("Mario");
+        else g4=new GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive("Mario");
 
         for(int i = 0; i < 1000; i++) {
-            Card.reset();
+            CartaTrevigiana.reset();
 
             BriscolaAQuattro b = new BriscolaAQuattro(g1, g2, g3, g4);
-            Giocatore g = b.giocaPartita();
+            GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g = b.giocaPartita();
             if(g==null) {
                 vintesquadra1 = vintesquadra1 + 0.5;
                 vintesquadra2 =vintesquadra2  + 0.5;

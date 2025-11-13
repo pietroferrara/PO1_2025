@@ -1,6 +1,8 @@
-package it.unive.dais.po1.gioco.carte;
+package it.unive.dais.po1.carte.trevigiane;
 
-public enum Seme {
+import it.unive.dais.po1.carte.Seme;
+
+public enum SemeTrevigiano implements Seme {
     Spade, Denari, Bastoni, Coppe;
 
     public void print() {
@@ -18,4 +20,6 @@ public enum Seme {
                 System.out.println("Coppe");
         }
     }
+
+
 }

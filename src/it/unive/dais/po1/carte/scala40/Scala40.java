@@ -2,6 +2,7 @@ package it.unive.dais.po1.carte.scala40;
 
 import it.unive.dais.po1.carte.francese.MazzoFrancese;
 import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreBirscolaIntelligente;
+import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreDiBriscola;
 import it.unive.dais.po1.carte.gioco.GiocoDiCarte;
 
 public class Scala40 extends GiocoDiCarte<MazzoFrancese> {
@@ -9,7 +10,7 @@ public class Scala40 extends GiocoDiCarte<MazzoFrancese> {
         super(new MazzoFrancese());
     }
 
-    public GiocatoreBirscolaIntelligente.GiocatoreDiBriscola giocaPartita() {
+    public GiocatoreDiBriscola giocaPartita() {
         return null;//TODO
     }
 }

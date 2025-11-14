@@ -2,6 +2,7 @@ package it.unive.dais.po1.carte.briscola;
 
 import it.unive.dais.po1.DesignByContract;
 import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreBirscolaIntelligente;
+import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreDiBriscola;
 import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
 
 /**
@@ -11,14 +12,14 @@ import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
  * The game is played with a deck of 40 cards and includes briscola
  * identification and rules for determining winning hands and rounds.
  *
- * @see GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive
  * @author Pietro Ferrara
+ * @see GiocatoreDiBriscolaNaive
  * @since 1.0
  */
 public class BriscolaADue extends Briscola {
 
     //invariant mazzo.getCarteRimanenti() + g1.getCarte() + g2.getCarte() + (briscola != null ? 1 : 0) == 40
-    private GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g1, g2;
+    private GiocatoreDiBriscola g1, g2;
 
     //invariant primoDiMano == 1 || primoDiMano == 2
     private int primoDiMano;
@@ -29,7 +30,7 @@ public class BriscolaADue extends Briscola {
      * @param g1 the first player in the game
      * @param g2 the second player in the game
      */
-    public BriscolaADue(GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g1, GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g2) {
+    public BriscolaADue(GiocatoreDiBriscola g1, GiocatoreDiBriscola g2) {
         super();
         this.g1 = g1;
         this.g2 = g2;
@@ -55,51 +56,48 @@ public class BriscolaADue extends Briscola {
 
     private void prendiCarteDaMazzo() {
         //precondition primoDiMano==1 || primoDiMano==2
-        if(this.primoDiMano==1) {
+        if (this.primoDiMano == 1) {
             g1.receiveCard(mazzo.pop());
             g2.receiveCard(mazzo.pop());
-        }
-        else if(this.primoDiMano==2) {
+        } else if (this.primoDiMano == 2) {
             g2.receiveCard(mazzo.pop());
             g1.receiveCard(mazzo.pop());
-        }
-        else {//Unreachable
+        } else {//Unreachable
             System.exit(-1);
         }
     }
 
     private void giocaSingolaMano() {
         CartaTrevigiana c1 = null, c2 = null;
-        switch(primoDiMano) {
+        switch (primoDiMano) {
             case 1:
-                c1= g1.scarta(null, this);
-                c2= g2.scarta(c1, this);
-                if(this.maggiore(c1, c2)) {
+                c1 = g1.scarta(null, this);
+                c2 = g2.scarta(c1, this);
+                if (this.maggiore(c1, c2)) {
                     g1.storeCard(c1);
                     g1.storeCard(c2);
-                    this.primoDiMano=1;
-                }
-                else {
+                    this.primoDiMano = 1;
+                } else {
                     g2.storeCard(c1);
                     g2.storeCard(c2);
-                    this.primoDiMano=2;
+                    this.primoDiMano = 2;
                 }
                 break;
             case 2:
-                c1= g2.scarta(null, this);
-                c2= g1.scarta(c1, this);
-                if(this.maggiore(c1, c2)) {
+                c1 = g2.scarta(null, this);
+                c2 = g1.scarta(c1, this);
+                if (this.maggiore(c1, c2)) {
                     g2.storeCard(c1);
                     g2.storeCard(c2);
-                    this.primoDiMano=2;
-                }
-                else {
+                    this.primoDiMano = 2;
+                } else {
                     g1.storeCard(c1);
                     g1.storeCard(c2);
-                    this.primoDiMano=1;
+                    this.primoDiMano = 1;
                 }
                 break;
-            default: System.exit(-1);
+            default:
+                System.exit(-1);
         }
     }
 
@@ -110,15 +108,15 @@ public class BriscolaADue extends Briscola {
      *
      * @return the winner of the game as a {@code Giocatore} object, or {@code null} if there is a tie.
      */
-    public GiocatoreBirscolaIntelligente.GiocatoreDiBriscola giocaPartita() {
+    public GiocatoreDiBriscola giocaPartita() {
         //preconditions g1!=null, g2!=null, g1!=g2
-        DesignByContract.checkPrecondition(g1!=null || g2!=null || g1!=g2);
-        while(mazzo.getCarteRimanenti()>1) {
+        DesignByContract.checkPrecondition(g1 != null || g2 != null || g1 != g2);
+        while (mazzo.getCarteRimanenti() > 1) {
             giocaSingolaMano();
             prendiCarteDaMazzo();
         }
         giocaSingolaMano();
-        switch(primoDiMano) {
+        switch (primoDiMano) {
             case 1:
                 g1.receiveCard(mazzo.pop());
                 g2.receiveCard(briscola);
@@ -127,30 +125,29 @@ public class BriscolaADue extends Briscola {
                 g2.receiveCard(mazzo.pop());
                 g1.receiveCard(briscola);
                 break;
-            default: System.exit(-1);
+            default:
+                System.exit(-1);
         }
         giocaSingolaMano();
         giocaSingolaMano();
         giocaSingolaMano();
         int g1punti = g1.contaPunti(), g2punti = g2.contaPunti();
-        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola res;
-        if(g1punti>g2punti) {
-            res=g1;
-        }
-        else if(g2punti>g1punti)
-            res=g2;
-        else res=null;
+        GiocatoreDiBriscola res;
+        if (g1punti > g2punti) {
+            res = g1;
+        } else if (g2punti > g1punti)
+            res = g2;
+        else res = null;
         //postcondition return==g1 || return==g2 || return==null
         //gia' un'astrazione ad alto livello
         //DesignByContract.checkPostcondition(res==g1 || res==g2 || res==null);
         DesignByContract.checkPostcondition(
-                g1punti>g2punti ? res==g1 :
-                g1punti<g2punti ? res==g2 :
-                res==null);
+                g1punti > g2punti ? res == g1 :
+                        g1punti < g2punti ? res == g2 :
+                                res == null);
 
         return res;
     }
-
 
 
 }

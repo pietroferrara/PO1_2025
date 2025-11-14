@@ -6,6 +6,7 @@ import it.unive.dais.po1.carte.briscola.BriscolaAQuattro;
 import it.unive.dais.po1.carte.francese.CartaFrancese;
 import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreBirscolaIntelligente;
 import it.unive.dais.po1.carte.francese.MazzoFrancese;
+import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreDiBriscola;
 import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreDiBriscolaNaive;
 import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
 import it.unive.dais.po1.carte.trevigiane.MazzoTrevigiano;
@@ -48,9 +49,9 @@ public class Runner {
 
     private static void playManyMatches2Players() {
         double vinteg1 = 0, vinteg2 = 0;
-        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g1 = null, g2 = null;
-        //if(new Random().nextBoolean())
-        //    g1 = new GiocatoreBirscolaIntelligente("Pietro");
+        GiocatoreDiBriscola g1 = null, g2 = null;
+        if(new Random().nextBoolean())
+            g1 = new GiocatoreBirscolaIntelligente("Pietro");
         //else g1 = new GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive("Pietro");
         //if(new Random().nextBoolean())
         //    g2=new GiocatoreDiBriscolaIntelligente("Alessio");
@@ -60,7 +61,7 @@ public class Runner {
             CartaTrevigiana.reset();
 
             BriscolaADue b = new BriscolaADue(g1, g2);
-            GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g = b.giocaPartita();
+            GiocatoreDiBriscola g = b.giocaPartita();
             if(g==null) {
                 vinteg1 = vinteg1 + 0.5;
                 vinteg2 =vinteg2  + 0.5;

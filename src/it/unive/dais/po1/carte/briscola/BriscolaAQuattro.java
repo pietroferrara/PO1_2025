@@ -1,13 +1,14 @@
 package it.unive.dais.po1.carte.briscola;
 
 import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreBirscolaIntelligente;
+import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreDiBriscola;
 import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
 import it.unive.dais.po1.carte.CarteCumulo;
 
 public class BriscolaAQuattro extends Briscola {
-    private GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g1, g2, g3, g4;
+    private GiocatoreDiBriscola g1, g2, g3, g4;
 
-    public BriscolaAQuattro(GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g1, GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g2, GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g3, GiocatoreBirscolaIntelligente.GiocatoreDiBriscola g4) {
+    public BriscolaAQuattro(GiocatoreDiBriscola g1, GiocatoreDiBriscola g2, GiocatoreDiBriscola g3, GiocatoreDiBriscola g4) {
         super();
         this.g1 = g1;
         this.g2 = g2;
@@ -15,7 +16,7 @@ public class BriscolaAQuattro extends Briscola {
         this.g4 = g4;
     }
 
-    public GiocatoreBirscolaIntelligente.GiocatoreDiBriscola giocaPartita() {
+    public GiocatoreDiBriscola giocaPartita() {
         TavoloQuattroGiocatori tavolo = new TavoloQuattroGiocatori(g1, g2, g3, g4);
         this.g1.receiveCard(mazzo.pop());
         this.g1.receiveCard(mazzo.pop());
@@ -33,7 +34,7 @@ public class BriscolaAQuattro extends Briscola {
         briscola = mazzo.pop();
         boolean mazzoIsEmpty = false;
         while (!mazzoIsEmpty) {
-            GiocatoreBirscolaIntelligente.GiocatoreDiBriscola vincitore = giocaMano(tavolo);
+            GiocatoreDiBriscola vincitore = giocaMano(tavolo);
             tavolo.get(0).receiveCard(mazzo.pop());
             tavolo.get(1).receiveCard(mazzo.pop());
             tavolo.get(2).receiveCard(mazzo.pop());
@@ -61,11 +62,11 @@ public class BriscolaAQuattro extends Briscola {
         }
     }
 
-    private GiocatoreBirscolaIntelligente.GiocatoreDiBriscola giocaMano(TavoloQuattroGiocatori tavolo) {
-        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola primoDiMano = tavolo.get(0);
-        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola secondoDiMano = tavolo.get(1);
-        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola terzoDiMano = tavolo.get(2);
-        GiocatoreBirscolaIntelligente.GiocatoreDiBriscola quartoDiMano = tavolo.get(3);
+    private GiocatoreDiBriscola giocaMano(TavoloQuattroGiocatori tavolo) {
+        GiocatoreDiBriscola primoDiMano = tavolo.get(0);
+        GiocatoreDiBriscola secondoDiMano = tavolo.get(1);
+        GiocatoreDiBriscola terzoDiMano = tavolo.get(2);
+        GiocatoreDiBriscola quartoDiMano = tavolo.get(3);
 
         CarteCumulo c = new CarteCumulo();
         CartaTrevigiana prima = primoDiMano.scarta(c, this);
@@ -99,7 +100,7 @@ public class BriscolaAQuattro extends Briscola {
         }
     }
 
-    private void giveAllCards(GiocatoreBirscolaIntelligente.GiocatoreDiBriscola giocatore, CarteCumulo c) {
+    private void giveAllCards(GiocatoreDiBriscola giocatore, CarteCumulo c) {
         while(c.getCarteRimanenti()>0) {
             giocatore.storeCard(c.pop());
         }

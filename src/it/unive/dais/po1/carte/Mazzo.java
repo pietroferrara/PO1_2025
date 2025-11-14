@@ -10,6 +10,11 @@ abstract public class Mazzo<C extends Carta> extends Stack<C> implements PopCard
         this.riempiMazzo();
     }
 
+    @Override
+    public String toString() {
+        return list.toString();
+    }
+
     abstract protected void riempiMazzo();
 
     public void mischia() {

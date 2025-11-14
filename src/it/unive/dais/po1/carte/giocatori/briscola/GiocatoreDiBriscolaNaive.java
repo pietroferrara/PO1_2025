@@ -11,8 +11,12 @@ import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
  * @since 1.0
  */
     public class GiocatoreDiBriscolaNaive extends GiocatoreDiBriscola {
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 
-        public GiocatoreDiBriscolaNaive(String name) {
+    public GiocatoreDiBriscolaNaive(String name) {
             //costruisci cio' che mi sta "sopra"
             super(name);//la prima istruzione invoca un costruttore della superclasse
         }

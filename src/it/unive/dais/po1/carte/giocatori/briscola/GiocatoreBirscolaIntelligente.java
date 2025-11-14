@@ -10,7 +10,7 @@ import it.unive.dais.po1.carte.briscola.BriscolaAQuattro;
  * @author Pietro Ferrara
  * @since 1.0
  */
-public class GiocatoreBirscolaIntelligente extends GiocatoreBirscolaIntelligente.GiocatoreDiBriscola {
+public class GiocatoreBirscolaIntelligente extends GiocatoreDiBriscola {
 
     /**
      * Constructs a Giocatore (player) instance with the specified name.

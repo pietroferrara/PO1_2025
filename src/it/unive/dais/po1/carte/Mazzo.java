@@ -2,7 +2,9 @@ package it.unive.dais.po1.carte;
 
 import it.unive.dais.po1.carte.briscola.PopCard;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 abstract public class Mazzo<C extends Carta> extends Stack<C> implements PopCard {
     public Mazzo(int max_carte) {

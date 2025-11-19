@@ -2,6 +2,9 @@ package it.unive.dais.po1.carte.trevigiane;
 
 import it.unive.dais.po1.carte.Mazzo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MazzoTrevigiano extends Mazzo<CartaTrevigiana> {
 
 
@@ -22,4 +25,15 @@ public class MazzoTrevigiano extends Mazzo<CartaTrevigiana> {
         }
     }
 
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        List<CartaTrevigiana> val = new ArrayList<>();
+        for(CartaTrevigiana c : list) {
+            val.add((CartaTrevigiana) c.clone());
+        }
+        MazzoTrevigiano result = new MazzoTrevigiano();
+        result.list = val;
+        return result;
+    }
 }

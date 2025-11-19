@@ -13,37 +13,39 @@ import it.unive.dais.po1.carte.trevigiane.MazzoTrevigiano;
 import it.unive.dais.po1.carte.trevigiane.SemeTrevigiano;
 import it.unive.dais.po1.carte.trevigiane.ValueTrevigiano;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class Runner {
 
     public static void main(String[] args) {
-        String a = "Pietro", b = "Pietro";
-        GiocatoreDiBriscolaNaive pietro = new GiocatoreDiBriscolaNaive("Pietro"),
-        pietro2 = new GiocatoreDiBriscolaNaive("Pietro");
-        Object o = "afdsa";
-        o = pietro;
-        o = new Stack<>();
-        o = new String[10];
-        if(pietro==pietro2)
-            System.out.println("Sono uguali");
-        else System.out.println("Sono diversi");
+        List<Integer> lista = new ArrayList<Integer>();
+        for(int i = 0; i < 100; i++)
+            lista.add(Integer.valueOf(i));
+        int val = lista.get(10);
 
+        int int1 = 435353;
+        double double1 = int1;
+        float float1 = 432.4F;
+        byte b = 123;
+        long long1 = int1;
+        double1 = float1;
+        float1 = (float) double1;
+        int1 = (int) float1;
+        int1 = (int) long1;
+
+        Integer wint1 = Integer.valueOf(4325);
+        Double wdouble1 = wint1.doubleValue();
+        //Long wlong1 = wint1;
+
+
+        CardSet<CartaTrevigiana> c = new CardSet<>();
+        c.push(new CartaTrevigiana(SemeTrevigiano.Bastoni, ValueTrevigiano.Asso));
+        Persona pietro = new Persona("Pietro", "Ferrara", "FRRPTR...");
         System.out.println(pietro);
+        String nome = pietro.name();
+        Persona pietro2 = new Persona("Pietro", "Ferrara", "FRRPTR...");
+        boolean equals = pietro.equals(pietro2);
 
-        CartaTrevigiana c1 = new CartaTrevigiana(SemeTrevigiano.Bastoni, ValueTrevigiano.Asso),
-                c2 = new CartaTrevigiana(SemeTrevigiano.Bastoni, ValueTrevigiano.Asso);
-        boolean equals = c1.equals(c2);
-
-        Set<CartaTrevigiana> set = new HashSet<>();
-        set.add(c1);
-        set.add(c2);
-
-
-        MazzoTrevigiano m = new MazzoTrevigiano();
-        System.out.println(m);
 
     }
 

@@ -4,7 +4,7 @@ import it.unive.dais.po1.DesignByContract;
 import it.unive.dais.po1.carte.Carta;
 
 
-public class CartaTrevigiana extends Carta<SemeTrevigiano, ValueTrevigiano> {
+public class CartaTrevigiana extends Carta<SemeTrevigiano, ValueTrevigiano> implements Comparable<CartaTrevigiana>{
 
     private static int carte_costruite;
     public static final int MAX_CARTE;
@@ -54,4 +54,18 @@ public class CartaTrevigiana extends Carta<SemeTrevigiano, ValueTrevigiano> {
         }
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new CartaTrevigiana(this.seme, this.valore);
+    }
+
+    @Override
+    public int compareTo(CartaTrevigiana o) {
+        if(this.equals(o))
+            return 0;
+        int semeconfronto = o.seme.ordinal() - this.seme.ordinal();
+        if(semeconfronto!=0)
+            return semeconfronto;
+        return o.valore.ordinal() - this.valore.ordinal();
+    }
 }

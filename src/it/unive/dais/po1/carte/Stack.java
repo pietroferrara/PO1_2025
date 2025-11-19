@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Stack<T> {
     protected List<T> list;
-    private int max_size = 0;
+    protected int max_size = 0;
     protected Stack(int size) {
         this.list = new ArrayList<T>();
         this.max_size = size;

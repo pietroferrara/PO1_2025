@@ -8,8 +8,6 @@ abstract public class Briscola extends GiocoDiCarte<MazzoTrevigiano> {
 
     protected CartaTrevigiana briscola;
 
-    protected MazzoTrevigiano mazzo;
-
     public Briscola() {
         super(new MazzoTrevigiano());
     }

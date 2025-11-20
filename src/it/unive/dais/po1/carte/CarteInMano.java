@@ -15,6 +15,7 @@ public class CarteInMano extends Stack<CartaTrevigiana> implements Storable, Pop
         }
         else {
             System.err.println("Mano piena");
+            //TODO: Replace with Exception
             System.exit(-1);
         }
     }

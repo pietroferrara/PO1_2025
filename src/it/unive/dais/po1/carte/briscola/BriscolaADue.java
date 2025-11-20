@@ -1,9 +1,11 @@
 package it.unive.dais.po1.carte.briscola;
 
 import it.unive.dais.po1.DesignByContract;
-import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreBirscolaIntelligente;
 import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreDiBriscola;
+import it.unive.dais.po1.carte.gioco.GiocoDiCarteException;
 import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
+
+import java.util.Random;
 
 /**
  * The Briscola class represents the card game of Briscola.
@@ -51,10 +53,10 @@ public class BriscolaADue extends Briscola {
         this.g2.receiveCard(mazzo.pop());
         this.g2.receiveCard(mazzo.pop());
         briscola = mazzo.pop();
-        this.primoDiMano = 1;
+        this.primoDiMano = new Random().nextBoolean()? 1: -1;
     }
 
-    private void prendiCarteDaMazzo() {
+    private void prendiCarteDaMazzo() throws BriscolaException {
         //precondition primoDiMano==1 || primoDiMano==2
         if (this.primoDiMano == 1) {
             g1.receiveCard(mazzo.pop());
@@ -63,11 +65,11 @@ public class BriscolaADue extends Briscola {
             g2.receiveCard(mazzo.pop());
             g1.receiveCard(mazzo.pop());
         } else {//Unreachable
-            System.exit(-1);
+            throw new BriscolaException("Il valore del primo di mano durante una partita di briscola e' invalido: "+this.primoDiMano);
         }
     }
 
-    private void giocaSingolaMano() {
+    private void giocaSingolaMano() throws BriscolaException {
         CartaTrevigiana c1 = null, c2 = null;
         switch (primoDiMano) {
             case 1:
@@ -97,7 +99,7 @@ public class BriscolaADue extends Briscola {
                 }
                 break;
             default:
-                System.exit(-1);
+                throw new BriscolaException("Primo di mano sbagliato: "+this.primoDiMano);
         }
     }
 
@@ -108,7 +110,7 @@ public class BriscolaADue extends Briscola {
      *
      * @return the winner of the game as a {@code Giocatore} object, or {@code null} if there is a tie.
      */
-    public GiocatoreDiBriscola giocaPartita() {
+    public GiocatoreDiBriscola giocaPartita() throws BriscolaException {
         //preconditions g1!=null, g2!=null, g1!=g2
         DesignByContract.checkPrecondition(g1 != null || g2 != null || g1 != g2);
         while (mazzo.getCarteRimanenti() > 1) {
@@ -126,7 +128,7 @@ public class BriscolaADue extends Briscola {
                 g1.receiveCard(briscola);
                 break;
             default:
-                System.exit(-1);
+                throw new BriscolaException("Primo di mano errato: "+this.primoDiMano);
         }
         giocaSingolaMano();
         giocaSingolaMano();

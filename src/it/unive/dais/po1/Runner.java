@@ -3,11 +3,13 @@ package it.unive.dais.po1;
 import it.unive.dais.po1.carte.*;
 import it.unive.dais.po1.carte.briscola.BriscolaADue;
 import it.unive.dais.po1.carte.briscola.BriscolaAQuattro;
+import it.unive.dais.po1.carte.briscola.BriscolaException;
 import it.unive.dais.po1.carte.francese.CartaFrancese;
 import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreBirscolaIntelligente;
 import it.unive.dais.po1.carte.francese.MazzoFrancese;
 import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreDiBriscola;
 import it.unive.dais.po1.carte.giocatori.briscola.GiocatoreDiBriscolaNaive;
+import it.unive.dais.po1.carte.gioco.GiocoDiCarteException;
 import it.unive.dais.po1.carte.trevigiane.CartaTrevigiana;
 import it.unive.dais.po1.carte.trevigiane.MazzoTrevigiano;
 import it.unive.dais.po1.carte.trevigiane.SemeTrevigiano;
@@ -17,61 +19,56 @@ import java.util.*;
 
 public class Runner {
 
-    public static void main(String[] args) {
-        List<Integer> lista = new ArrayList<Integer>();
-        for(int i = 0; i < 100; i++)
-            lista.add(Integer.valueOf(i));
-        int val = lista.get(10);
-
-        int int1 = 435353;
-        double double1 = int1;
-        float float1 = 432.4F;
-        byte b = 123;
-        long long1 = int1;
-        double1 = float1;
-        float1 = (float) double1;
-        int1 = (int) float1;
-        int1 = (int) long1;
-
-        Integer wint1 = Integer.valueOf(4325);
-        Double wdouble1 = wint1.doubleValue();
-        //Long wlong1 = wint1;
-
-
-        CardSet<CartaTrevigiana> c = new CardSet<>();
-        c.push(new CartaTrevigiana(SemeTrevigiano.Bastoni, ValueTrevigiano.Asso));
-        Persona pietro = new Persona("Pietro", "Ferrara", "FRRPTR...");
-        System.out.println(pietro);
-        String nome = pietro.name();
-        Persona pietro2 = new Persona("Pietro", "Ferrara", "FRRPTR...");
-        boolean equals = pietro.equals(pietro2);
-
+    public static void main(String[] args) throws GiocoDiCarteException {
+        //playManyMatches2Players();
+        //foo();
+        try {
+            ArrayList<MazzoTrevigiano> mazzi = new ArrayList<>();
+            while (true)
+                mazzi.add(new MazzoTrevigiano());
+        }
+        catch(OutOfMemoryError e) {
+            System.err.println("Errore: mazzo troppo grande");
+        }
+        catch(StackOverflowError e) {
+            System.err.println("Errore: mazzo troppo grande");
+        }
+        catch(NullPointerException e) {
+            System.err.println("Errore: null pointer");
+        }
 
     }
 
-    private static void playManyMatches2Players() {
+    private static void foo() {
+        foo();
+    }
+
+    private static void playManyMatches2Players() throws GiocoDiCarteException {
         double vinteg1 = 0, vinteg2 = 0;
         GiocatoreDiBriscola g1 = null, g2 = null;
-        if(new Random().nextBoolean())
-            g1 = new GiocatoreBirscolaIntelligente("Pietro");
-        //else g1 = new GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive("Pietro");
-        //if(new Random().nextBoolean())
-        //    g2=new GiocatoreDiBriscolaIntelligente("Alessio");
-        //else g2=new GiocatoreBirscolaIntelligente.GiocatoreDiBriscolaNaive("Alessio");
+        g1 = new GiocatoreBirscolaIntelligente("Pietro");
+        g2=new GiocatoreBirscolaIntelligente("Alessio");
 
         for(int i = 0; i < 1000; i++) {
             CartaTrevigiana.reset();
+            g1 = new GiocatoreBirscolaIntelligente("Pietro");
+            g2=new GiocatoreBirscolaIntelligente("Alessio");
 
             BriscolaADue b = new BriscolaADue(g1, g2);
-            GiocatoreDiBriscola g = b.giocaPartita();
-            if(g==null) {
-                vinteg1 = vinteg1 + 0.5;
-                vinteg2 =vinteg2  + 0.5;
+
+            try {
+                GiocatoreDiBriscola g = b.giocaPartita();
+                if (g == null) {
+                    vinteg1 = vinteg1 + 0.5;
+                    vinteg2 = vinteg2 + 0.5;
+                } else if (g.getName().equals("Pietro")) vinteg1++;
+                else if (g.getName().equals("Alessio")) vinteg2++;
+                if (g == null) System.out.println("Partita patta");
+                else System.out.println("Ha vinto " + g.getName());
             }
-            else if(g.getName().equals("Pietro")) vinteg1++;
-            else if(g.getName().equals("Alessio")) vinteg2++;
-            if(g==null) System.out.println("Partita patta");
-            else System.out.println("Ha vinto " + g.getName());
+            catch(BriscolaException e) {
+                System.err.println("Errore durante la partita, partita invalida");
+            }
 
         }
 

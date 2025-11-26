@@ -15,14 +15,39 @@ import it.unive.dais.po1.carte.trevigiane.MazzoTrevigiano;
 import it.unive.dais.po1.carte.trevigiane.SemeTrevigiano;
 import it.unive.dais.po1.carte.trevigiane.ValueTrevigiano;
 
+import java.io.*;
 import java.util.*;
 
 public class Runner {
 
-    public static void main(String[] args) throws GiocoDiCarteException {
+    public static void main(String[] args) throws IOException, GiocoDiCarteException {
+        AssertTrier obj = new AssertTrier(-10);
+        obj.validate();
+        //Runner.playManyMatches2Players();
+
+
+        //Scrivi hello world su un file
+        //Writer w = null;
+        //try {
+        //    w = new BufferedWriter(
+        //            new OutputStreamWriter(
+        //                    new FileOutputStream("hello.txt")
+        //            ));
+        /*try(FileOutputStream f = new FileOutputStream("hello.txt");
+            OutputStreamWriter o = new OutputStreamWriter(f);
+            Writer w =  new BufferedWriter(o);)
+        {
+            w.write("Hello world 2");
+        }*/
+        //finally {
+        //    System.out.println("Finalizing");
+        //    if(w!=null)
+        //        w.close();
+        //}
+
         //playManyMatches2Players();
         //foo();
-        try {
+        /*try {
             ArrayList<MazzoTrevigiano> mazzi = new ArrayList<>();
             while (true)
                 mazzi.add(new MazzoTrevigiano());
@@ -35,7 +60,7 @@ public class Runner {
         }
         catch(NullPointerException e) {
             System.err.println("Errore: null pointer");
-        }
+        }*/
 
     }
 
@@ -49,29 +74,34 @@ public class Runner {
         g1 = new GiocatoreBirscolaIntelligente("Pietro");
         g2=new GiocatoreBirscolaIntelligente("Alessio");
 
-        for(int i = 0; i < 1000; i++) {
-            CartaTrevigiana.reset();
-            g1 = new GiocatoreBirscolaIntelligente("Pietro");
-            g2=new GiocatoreBirscolaIntelligente("Alessio");
+        try {
+            for (int i = 0; i < 1000; i++) {
+                g1 = new GiocatoreBirscolaIntelligente("Pietro");
+                g2 = new GiocatoreBirscolaIntelligente("Alessio");
 
-            BriscolaADue b = new BriscolaADue(g1, g2);
+                BriscolaADue b = new BriscolaADue(g1, g2);
 
-            try {
-                GiocatoreDiBriscola g = b.giocaPartita();
-                if (g == null) {
-                    vinteg1 = vinteg1 + 0.5;
-                    vinteg2 = vinteg2 + 0.5;
-                } else if (g.getName().equals("Pietro")) vinteg1++;
-                else if (g.getName().equals("Alessio")) vinteg2++;
-                if (g == null) System.out.println("Partita patta");
-                else System.out.println("Ha vinto " + g.getName());
+                try {
+                    GiocatoreDiBriscola g = b.giocaPartita();
+                    if (g == null) {
+                        vinteg1 = vinteg1 + 0.5;
+                        vinteg2 = vinteg2 + 0.5;
+                    } else if (g.getName().equals("Pietro")) vinteg1++;
+                    else if (g.getName().equals("Alessio")) vinteg2++;
+                    if (g == null) System.out.println("Partita patta");
+                    else System.out.println("Ha vinto " + g.getName());
+                } catch (BriscolaException e) {
+                    System.err.println("Errore durante la partita, partita invalida");
+                } finally {
+                    System.out.println("Reset delle carte");
+                    CartaTrevigiana.reset();
+                }
+
             }
-            catch(BriscolaException e) {
-                System.err.println("Errore durante la partita, partita invalida");
-            }
-
         }
-
+        catch(Throwable e) {
+            throw new BriscolaException("Errore durante la partita", e);
+        }
         System.out.println("Vinte g1: " + vinteg1 + ", vinte g2: " + vinteg2);
     }
 /*

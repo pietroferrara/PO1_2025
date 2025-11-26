@@ -4,7 +4,7 @@ import it.unive.dais.po1.carte.gioco.GiocoDiCarteException;
 
 public class BriscolaException extends GiocoDiCarteException {
 
-    public BriscolaException(String message) {
-        super(message);
+    public BriscolaException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

@@ -34,7 +34,7 @@ public class BriscolaADue extends Briscola {
      */
     public BriscolaADue(GiocatoreDiBriscola g1, GiocatoreDiBriscola g2) {
         super();
-        this.g1 = g1;
+        this.g1 = new Random().nextBoolean() ? null : g1;
         this.g2 = g2;
 
         //se g1 e' intelligente, allora fai diventare anche g2 intelligante
@@ -65,7 +65,7 @@ public class BriscolaADue extends Briscola {
             g2.receiveCard(mazzo.pop());
             g1.receiveCard(mazzo.pop());
         } else {//Unreachable
-            throw new BriscolaException("Il valore del primo di mano durante una partita di briscola e' invalido: "+this.primoDiMano);
+            throw new BriscolaException("Il valore del primo di mano durante una partita di briscola e' invalido: "+this.primoDiMano, null);
         }
     }
 
@@ -99,7 +99,7 @@ public class BriscolaADue extends Briscola {
                 }
                 break;
             default:
-                throw new BriscolaException("Primo di mano sbagliato: "+this.primoDiMano);
+                throw new BriscolaException("Primo di mano sbagliato: "+this.primoDiMano, null);
         }
     }
 
@@ -111,44 +111,44 @@ public class BriscolaADue extends Briscola {
      * @return the winner of the game as a {@code Giocatore} object, or {@code null} if there is a tie.
      */
     public GiocatoreDiBriscola giocaPartita() throws BriscolaException {
-        //preconditions g1!=null, g2!=null, g1!=g2
-        DesignByContract.checkPrecondition(g1 != null || g2 != null || g1 != g2);
-        while (mazzo.getCarteRimanenti() > 1) {
+            //preconditions g1!=null, g2!=null, g1!=g2
+            assert g1 != null || g2 != null || g1 != g2;
+            while (mazzo.getCarteRimanenti() > 1) {
+                giocaSingolaMano();
+                prendiCarteDaMazzo();
+            }
             giocaSingolaMano();
-            prendiCarteDaMazzo();
-        }
-        giocaSingolaMano();
-        switch (primoDiMano) {
-            case 1:
-                g1.receiveCard(mazzo.pop());
-                g2.receiveCard(briscola);
-                break;
-            case 2:
-                g2.receiveCard(mazzo.pop());
-                g1.receiveCard(briscola);
-                break;
-            default:
-                throw new BriscolaException("Primo di mano errato: "+this.primoDiMano);
-        }
-        giocaSingolaMano();
-        giocaSingolaMano();
-        giocaSingolaMano();
-        int g1punti = g1.contaPunti(), g2punti = g2.contaPunti();
-        GiocatoreDiBriscola res;
-        if (g1punti > g2punti) {
-            res = g1;
-        } else if (g2punti > g1punti)
-            res = g2;
-        else res = null;
-        //postcondition return==g1 || return==g2 || return==null
-        //gia' un'astrazione ad alto livello
-        //DesignByContract.checkPostcondition(res==g1 || res==g2 || res==null);
-        DesignByContract.checkPostcondition(
-                g1punti > g2punti ? res == g1 :
-                        g1punti < g2punti ? res == g2 :
-                                res == null);
+            switch (primoDiMano) {
+                case 1:
+                    g1.receiveCard(mazzo.pop());
+                    g2.receiveCard(briscola);
+                    break;
+                case 2:
+                    g2.receiveCard(mazzo.pop());
+                    g1.receiveCard(briscola);
+                    break;
+                default:
+                    throw new BriscolaException("Primo di mano errato: " + this.primoDiMano, null);
+            }
+            giocaSingolaMano();
+            giocaSingolaMano();
+            giocaSingolaMano();
+            int g1punti = g1.contaPunti(), g2punti = g2.contaPunti();
+            GiocatoreDiBriscola res;
+            if (g1punti > g2punti) {
+                res = g1;
+            } else if (g2punti > g1punti)
+                res = g2;
+            else res = null;
+            //postcondition return==g1 || return==g2 || return==null
+            //gia' un'astrazione ad alto livello
+            //DesignByContract.checkPostcondition(res==g1 || res==g2 || res==null);
+            DesignByContract.checkPostcondition(
+                    g1punti > g2punti ? res == g1 :
+                            g1punti < g2punti ? res == g2 :
+                                    res == null);
 
-        return res;
+            return res;
     }
 
 

@@ -16,6 +16,7 @@ public class BriscolaAQuattro extends Briscola {
         this.g4 = g4;
     }
 
+    @Override
     public GiocatoreDiBriscola giocaPartita() {
         TavoloQuattroGiocatori tavolo = new TavoloQuattroGiocatori(g1, g2, g3, g4);
         this.g1.receiveCard(mazzo.pop());

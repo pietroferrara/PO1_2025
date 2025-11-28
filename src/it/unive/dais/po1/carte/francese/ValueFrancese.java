@@ -1,14 +1,18 @@
 package it.unive.dais.po1.carte.francese;
 
 import it.unive.dais.po1.carte.Value;
+import it.unive.dais.po1.carte.ValueOfCard;
 
+//@ValueOfCard(maxValue = 13)
 public enum ValueFrancese implements Value {
     //1 asso, 2, 3, 4, 5, 6, 7, 8 fante, 9 cavallo, 10 re
     Asso(1), Due(2), Tre(3), Quattro(4), Cinque(5), Sei(6), Sette(7), Otto(8),  Nove(9),  Dieci(10),  Jack(11), Queen(12), King(13);
 
 
+    @ValueOfCard(maxValue = 13)
     private final int value;
-    private ValueFrancese(int value) {
+
+    private ValueFrancese(@ValueOfCard(maxValue = 13) int value) {
         this.value = value;
     }
 
@@ -48,5 +52,10 @@ public enum ValueFrancese implements Value {
             default:
                 return null;
         }
+    }
+
+    @ValueOfCard(maxValue = 13)
+    public int valueOf() {
+        return value;
     }
 }

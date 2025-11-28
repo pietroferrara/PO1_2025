@@ -1,6 +1,7 @@
 package it.unive.dais.po1.carte.trevigiane;
 
 import it.unive.dais.po1.carte.Value;
+import it.unive.dais.po1.carte.ValueOfCard;
 
 public enum ValueTrevigiano implements Value {
     //1 asso, 2, 3, 4, 5, 6, 7, 8 fante, 9 cavallo, 10 re
@@ -40,6 +41,7 @@ public enum ValueTrevigiano implements Value {
     }
 
 
+    @Deprecated
     public void print() {
         System.out.println(this.name());
     }
@@ -58,5 +60,10 @@ public enum ValueTrevigiano implements Value {
             return false;
         else
             return this.value>=valore.value;
+    }
+
+    @ValueOfCard
+    public int getValue() {
+        return value;
     }
 }

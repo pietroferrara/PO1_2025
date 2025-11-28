@@ -1,5 +1,5 @@
 package it.unive.dais.po1.carte;
 
 public interface Value {
-    void print();
+    @Deprecated(forRemoval = true, since = "lecture 21") void print();
 }

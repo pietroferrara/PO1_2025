@@ -34,7 +34,7 @@ public class BriscolaADue extends Briscola {
      */
     public BriscolaADue(GiocatoreDiBriscola g1, GiocatoreDiBriscola g2) {
         super();
-        this.g1 = new Random().nextBoolean() ? null : g1;
+        this.g1 = g1;
         this.g2 = g2;
 
         //se g1 e' intelligente, allora fai diventare anche g2 intelligante

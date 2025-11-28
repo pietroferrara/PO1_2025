@@ -30,6 +30,7 @@ public class CartaTrevigiana extends Carta<SemeTrevigiano, ValueTrevigiano> impl
     }
 
     //FIXME: Spostare in Briscola
+    @SuppressWarnings("none")
     public void print() {
         System.out.println("Carta Trevigiana---------");
         seme.print();
